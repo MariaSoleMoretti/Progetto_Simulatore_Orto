@@ -44,14 +44,29 @@ public abstract class Pianta {
         return this.umiditàMax;
     }
     
+    public StatoCrescita getStatoCrescita(){
+        return this.statoCorrenteCrescita;
+    }
+    
     protected void setStatoCrescita(StatoCrescita nuovoStato){
         this.statoCorrenteCrescita = nuovoStato;
     }
 
-    protected void cambiaFaseCrescita(){
+    private void cambiaFaseCrescita(){
         this.statoCorrenteCrescita = this.statoCorrenteCrescita.successivo();
     }
 
+    // ------------------------------------------------------------------------------
+    //Metodo per aggiornare lo stato della crescita della pianta
+    // ------------------------------------------------------------------------------
+    protected void aggiornaStatoCrescita(){
+        cambiaFaseCrescita();
+        //System.out.println(this.statoCorrenteCrescita.toString());
+    }
+
+    // ------------------------------------------------------------------------------
+    //Metodo per verificare se la pianta è pronta per essere raccolta
+    // ------------------------------------------------------------------------------
     public boolean prontaDaRaccogliere(){
         return (this.statoCorrenteCrescita == StatoCrescita.SENESCENZA) ? true : false;
     } 
