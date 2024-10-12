@@ -1,3 +1,4 @@
+package piante;
 /*DESCRIZIONE CLASSE
  *  La seguente classe astratta definisce un comportamento comune a tutte la tipologie di piante che l'utente 
  *  può aggiungere al suo orto. 
@@ -47,7 +48,9 @@ public abstract class Pianta {
         this.statoCorrenteCrescita = nuovoStato;
     }
 
-    protected abstract void cambiaFaseCrescita();
+    protected void cambiaFaseCrescita(){
+        this.statoCorrenteCrescita = this.statoCorrenteCrescita.successivo();
+    }
 
     public boolean prontaDaRaccogliere(){
         return (this.statoCorrenteCrescita == StatoCrescita.SENESCENZA) ? true : false;
