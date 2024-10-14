@@ -9,6 +9,8 @@ package piante;
  *      - range di umidità del suolo ottimale per la crescita della pianta.
  */
 
+ import java.util.*;
+
 public abstract class Pianta {
 
     // Campi della classe
@@ -17,14 +19,27 @@ public abstract class Pianta {
     private double umiditàMin;
     private double umiditàMax;
     private StatoCrescita statoCorrenteCrescita;
+    private Timer timer;
 
     //Costruttore
-    public Pianta(String nome, String[] stagioni, double min, double max){
+    public Pianta(String nome, String[] stagioni, double min, double max, long delay, long period){
         this.nome = nome;
         this.stagioni = stagioni.clone();
         this.umiditàMin = min;
         this.umiditàMax = max;
         this.statoCorrenteCrescita = StatoCrescita.GERMINAZIONE;
+        this.timer = new Timer();
+        timer.schedule(new CrescitaPianta(), delay, period);
+    }
+
+    // ------------------------------------------------------------------------------
+    // Il seguente task definisce l'alternansi delle fasi della crescita della pianta 
+    // ------------------------------------------------------------------------------ 
+    private class CrescitaPianta extends TimerTask {
+        @Override
+        public void run() {
+            cambiaFaseCrescita();
+        }
     }
 
     // Metodi della classe
@@ -52,16 +67,11 @@ public abstract class Pianta {
         this.statoCorrenteCrescita = nuovoStato;
     }
 
-    private void cambiaFaseCrescita(){
-        this.statoCorrenteCrescita = this.statoCorrenteCrescita.successivo();
-    }
-
-    // ------------------------------------------------------------------------------
+     // ------------------------------------------------------------------------------
     //Metodo per aggiornare lo stato della crescita della pianta
     // ------------------------------------------------------------------------------
-    protected void aggiornaStatoCrescita(){
-        cambiaFaseCrescita();
-        //System.out.println(this.statoCorrenteCrescita.toString());
+    public void cambiaFaseCrescita(){
+        this.statoCorrenteCrescita = this.statoCorrenteCrescita.successivo();
     }
 
     // ------------------------------------------------------------------------------
