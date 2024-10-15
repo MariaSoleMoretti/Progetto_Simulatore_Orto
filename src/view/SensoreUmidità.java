@@ -1,13 +1,13 @@
-
+package view;
 public class SensoreUmidità {
 
-    private Meteo meteo;
+    private Scompartimento scompartimento;
     private double sogliaMin;
     private double sogliaMax;
 
     //Costruttore
-    public SensoreUmidità(Meteo m, double min, double max){
-        this.meteo = m;
+    public SensoreUmidità(Scompartimento sc, double min, double max){
+        this.scompartimento = sc;
         this.sogliaMin = min;
         this.sogliaMax = max;
     }
@@ -21,6 +21,6 @@ public class SensoreUmidità {
     }
 
     public void aggiornaUmidità(){
-        
+
     }
 }

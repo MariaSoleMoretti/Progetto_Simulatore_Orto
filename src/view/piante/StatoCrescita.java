@@ -1,4 +1,4 @@
-package piante;
+package view.piante;
 
 public enum StatoCrescita {
     GERMINAZIONE, FIORITURA, MATURAZIONE, SENESCENZA;

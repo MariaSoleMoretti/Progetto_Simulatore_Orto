@@ -1,15 +1,17 @@
+package view;
 import java.util.*;
-import piante.Pianta;
+
+import view.piante.Pianta;
 
 public class Scompartimento {
     
     final static int CAPIENZA = 4;
     private List<Pianta> piante;
-    private SensoreUmidità sensore;
+    private Meteo meteo;
 
-    public Scompartimento(List<Pianta> piante, SensoreUmidità sensore){
+    public Scompartimento(List<Pianta> piante, Meteo meteo){
         Collections.copy(this.piante, piante);
-        this.sensore = sensore;
+        this.meteo = meteo;
     }
 
     public void aggiungiPianta(Pianta p){
