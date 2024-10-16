@@ -1,4 +1,4 @@
-package view.piante;
+package model.piante;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package view.piante;
+package model.piante;
 /*DESCRIZIONE CLASSE
  *  La seguente classe astratta definisce un comportamento comune a tutte la tipologie di piante che l'utente 
  *  può aggiungere al suo orto. 

@@ -1,4 +1,4 @@
-package view.piante;
+package model.piante;
 
 public class Cipolla extends Pianta{
     final static String NOME = "Cipolla";

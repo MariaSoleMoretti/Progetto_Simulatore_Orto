@@ -1,17 +1,23 @@
-package view;
+package model;
 import java.util.*;
 
-import view.piante.Pianta;
+import model.piante.Pianta;
 
-public class Scompartimento {
+public class Scompartimento implements EventListener {
     
     final static int CAPIENZA = 4;
     private List<Pianta> piante;
-    private Meteo meteo;
+    private double valUmidità;
+    final double valMaxUmidità; 
 
-    public Scompartimento(List<Pianta> piante, Meteo meteo){
-        Collections.copy(this.piante, piante);
-        this.meteo = meteo;
+    public Scompartimento(List<Pianta> piante, double max){
+        this.piante = new ArrayList<>(piante);
+        this.valMaxUmidità = max;
+    }
+
+    public Scompartimento(double max){
+        this.piante = new ArrayList<>();
+        this.valMaxUmidità= max;
     }
 
     public void aggiungiPianta(Pianta p){
@@ -49,7 +55,13 @@ public class Scompartimento {
         }
     }
 
-    public double leggiUmidità(){
-        return 0.0;
+    public void modificaUmidità(){
+        this.valUmidità = valMaxUmidità;
+        System.out.println("Umidità: "+ this.valUmidità*100+"%");
     }
+
+    public void modificaTemperatura(double temp) {
+        
+    }
+
 }

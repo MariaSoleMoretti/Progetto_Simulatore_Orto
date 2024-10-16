@@ -1,9 +1,7 @@
-package view;
+package model;
 
 import java.util.*;
 
-import view.piante.Pianta;
-import view.piante.Pomodoro;
 
 /*DESCRIZIONE CLASSE
  *  La seguente classe simula le condizione meteorologiche che influenzano la crescita delle piante. In particolare 
@@ -19,6 +17,7 @@ public class Meteo {
     private boolean pioggia;
     private Random rnd;
     private Timer timer;
+    private List<Scompartimento> listeners;
 
     //Costruttore della classe
     public Meteo(){
@@ -28,6 +27,7 @@ public class Meteo {
         this.timer = new Timer();
         timer.schedule(new Pioggia(), 5000, 8000);
         timer.schedule(new Temperatura(), 2000, 3000);
+        this.listeners = new ArrayList<>();
     }
 
     private class Pioggia extends TimerTask {
@@ -58,10 +58,10 @@ public class Meteo {
 
         if(tipoOp){
             aumentaTemperatura(this.rnd.nextInt(10));
-            System.out.println("La temperatura sta aumentando!");
+            //System.out.println("La temperatura sta aumentando!");
         } else {
             diminuisciTemperatura(this.rnd.nextInt(10));
-            System.out.println("La temperatura sta diminuendo!");
+            //System.out.println("La temperatura sta diminuendo!");
         }
     }
 
@@ -103,12 +103,27 @@ public class Meteo {
         this.pioggia = this.rnd.nextBoolean();
         if(this.pioggia){
             System.out.println("Sta piovendo!\n");
+            //Notifico agli scompartimenti che ha piovuto
+            notifyPioggia();
         } else {
             System.out.println("Non piove....\n");
         }
     }
 
+    public void addListener(Scompartimento sc){
+        this.listeners.add(sc);
+    }
+
+    public void notifyPioggia(){
+        for (Scompartimento s : listeners) {
+            s.modificaUmidità();
+        }
+    }
+
     public static void main(String[] args) {
         Meteo meteo = new Meteo();
+        Scompartimento sc = new Scompartimento(0.70);
+
+        meteo.addListener(sc);
     }
 }

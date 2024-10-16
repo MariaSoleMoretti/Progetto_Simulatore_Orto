@@ -1,4 +1,5 @@
-package view;
+package model;
+
 public class SensoreUmidità {
 
     private Scompartimento scompartimento;
