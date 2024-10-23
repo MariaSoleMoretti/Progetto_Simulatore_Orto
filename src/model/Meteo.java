@@ -17,7 +17,7 @@ public class Meteo {
     private boolean pioggia;
     private Random rnd;
     private Timer timer;
-    private List<Scompartimento> listeners;
+    private Set<Scompartimento> listeners;
 
     //Costruttore della classe
     public Meteo(){
@@ -27,7 +27,7 @@ public class Meteo {
         this.timer = new Timer();
         timer.schedule(new Pioggia(), 5000, 8000);
         timer.schedule(new Temperatura(), 2000, 3000);
-        this.listeners = new ArrayList<>();
+        this.listeners = new TreeSet<>();
     }
 
     private class Pioggia extends TimerTask {
@@ -111,19 +111,16 @@ public class Meteo {
     }
 
     public void addListener(Scompartimento sc){
-        this.listeners.add(sc);
+        try{
+            this.listeners.add(sc);
+        } catch (Exception e){
+            System.out.println("Errore! \n "+ e );
+        }
     }
 
     public void notifyPioggia(){
         for (Scompartimento s : listeners) {
-            s.modificaUmidità();
+            s.resetUmidità();
         }
-    }
-
-    public static void main(String[] args) {
-        Meteo meteo = new Meteo();
-        Scompartimento sc = new Scompartimento(0.70);
-
-        meteo.addListener(sc);
     }
 }

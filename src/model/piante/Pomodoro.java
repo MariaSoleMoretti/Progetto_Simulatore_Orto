@@ -1,7 +1,5 @@
 package model.piante;
 
-import java.util.*;
-
 public class Pomodoro extends Pianta {
     final static String NOME = "Pomodoro";
     final static String[] STAGIONI = {"Primavera"};

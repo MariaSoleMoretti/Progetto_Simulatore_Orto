@@ -2,13 +2,11 @@ package model;
 
 public class SensoreUmidità {
 
-    private Scompartimento scompartimento;
     private double sogliaMin;
     private double sogliaMax;
 
     //Costruttore
-    public SensoreUmidità(Scompartimento sc, double min, double max){
-        this.scompartimento = sc;
+    public SensoreUmidità(double min, double max){
         this.sogliaMin = min;
         this.sogliaMax = max;
     }
@@ -21,7 +19,7 @@ public class SensoreUmidità {
         return this.sogliaMax;
     }
 
-    public void aggiornaUmidità(){
+    public void aggiornaValoreUmidità(double val){
 
     }
 }
