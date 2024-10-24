@@ -3,10 +3,18 @@ package model;
 import java.util.*;
 
 public class OrtoSmart {
+    private static OrtoSmart instance;
     private Map<Scompartimento,SensoreUmidità> orto;    //La mappa che contiene la corrispondenza scompartimento col il rispettivo sensore
 
     public OrtoSmart(){
         this.orto = new HashMap<>();
+    }
+
+    public static OrtoSmart getInstance() {
+        if (instance == null) {
+            instance = new OrtoSmart();
+        }
+        return instance;
     }
 
     public void attivaIrrigazione(int i){
@@ -17,14 +25,10 @@ public class OrtoSmart {
         return this.orto.keySet();
     }
 
-    public void aggiungiNuovoScompartimento(double maxUmidità){
+    public void aggiungiNuovoScompartimento(double maxUmidità) throws Exception{
         var sensore = new SensoreUmidità(0, maxUmidità);
         Scompartimento scompartimento = new Scompartimento(this.orto.size(),maxUmidità, sensore);
-        try{
-            this.orto.putIfAbsent(scompartimento,sensore);
-        } catch (Exception e){
-            System.out.println(e);
-        } 
+        this.orto.putIfAbsent(scompartimento,sensore);
     }
 
     public void  rimuoviScompartimento(Scompartimento scompartimento){
@@ -36,9 +40,6 @@ public class OrtoSmart {
 
     public static void main(String[] args) {
         OrtoSmart orto = new OrtoSmart();
-
-        orto.aggiungiNuovoScompartimento(0.70);
-        orto.aggiungiNuovoScompartimento(0.70);
 
         Meteo meteo = new Meteo();
 

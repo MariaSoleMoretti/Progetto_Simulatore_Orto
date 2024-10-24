@@ -3,13 +3,12 @@ package controller;
 import model.*;
 import utils.MyUtils;
 import java.awt.event.*;
-import java.util.*;
 public class ControllerIrrigazione implements ActionListener {
 
-    private Set<Scompartimento> listeners;
+    final OrtoSmart orto = OrtoSmart.getInstance();
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        MyUtils.notifyPioggia(listeners);
+        MyUtils.notifyPioggia(orto.getScompartimenti());
     }
 }
