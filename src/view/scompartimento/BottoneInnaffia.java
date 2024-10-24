@@ -1,4 +1,4 @@
-package view;
+package view.scompartimento;
 
 import javax.swing.*;
 import java.awt.event.*;
