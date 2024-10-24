@@ -2,6 +2,8 @@ package model;
 
 import java.util.*;
 
+import utils.MyUtils;
+
 
 /*DESCRIZIONE CLASSE
  *  La seguente classe simula le condizione meteorologiche che influenzano la crescita delle piante. In particolare 
@@ -104,7 +106,7 @@ public class Meteo {
         if(this.pioggia){
             System.out.println("Sta piovendo!\n");
             //Notifico agli scompartimenti che ha piovuto
-            notifyPioggia();
+            MyUtils.notifyPioggia(listeners);
         } else {
             System.out.println("Non piove....\n");
         }
@@ -115,12 +117,6 @@ public class Meteo {
             this.listeners.add(sc);
         } catch (Exception e){
             System.out.println("Errore! \n "+ e );
-        }
-    }
-
-    public void notifyPioggia(){
-        for (Scompartimento s : listeners) {
-            s.resetUmidità();
         }
     }
 }

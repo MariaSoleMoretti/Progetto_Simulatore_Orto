@@ -3,7 +3,7 @@ import java.util.*;
 
 import model.piante.Pianta;
 
-public class Scompartimento implements EventListener, Comparable {
+public class Scompartimento implements EventListener, Comparable<Scompartimento> {
     
     final static int CAPIENZA = 4;
     final int ID;
@@ -85,8 +85,8 @@ public class Scompartimento implements EventListener, Comparable {
     }
 
     @Override
-    public int compareTo(Object o) {
-        return(o.toString() == this.toString()? 1 : -1);
+    public int compareTo(Scompartimento o) {
+        return(o.getSensore() == this.getSensore()? 1 : -1);
     }
 
 }
