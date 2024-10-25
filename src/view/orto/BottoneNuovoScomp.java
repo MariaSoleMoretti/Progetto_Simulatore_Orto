@@ -1,13 +1,13 @@
-package view.scompartimento;
+package view.orto;
 
 import javax.swing.*;
 
-import controller.ControllerOrto;
+import controller.*;
 import model.Scompartimento;
 
 public class BottoneNuovoScomp extends JButton{
     
-    public BottoneNuovoScomp(Scompartimento scompartimento, ControllerOrto c){
+    public BottoneNuovoScomp(Scompartimento scompartimento, ControllerScompartimento c){
         super("Aggiungi scompartimento");
         this.addActionListener(c);
     }

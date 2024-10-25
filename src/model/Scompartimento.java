@@ -1,7 +1,9 @@
 package model;
 import java.util.*;
 
+import controller.*;
 import model.piante.Pianta;
+import view.scompartimento.PanelPianta;
 
 public class Scompartimento implements EventListener, Comparable<Scompartimento> {
     
@@ -11,6 +13,7 @@ public class Scompartimento implements EventListener, Comparable<Scompartimento>
     private SensoreUmidità sensore;
     private double valUmidità;
     final double valMaxUmidità; 
+    final ControllerScompartimento controllerOrto = ControllerScompartimento.getInstance();
 
     public Scompartimento(int id,List<Pianta> piante, SensoreUmidità sensore, double max){
         this.ID = id;
@@ -25,7 +28,13 @@ public class Scompartimento implements EventListener, Comparable<Scompartimento>
 
     public void aggiungiPianta(Pianta p){
         if(this.piante.size() < CAPIENZA){
-            this.piante.add(p);
+            this.controllerOrto.aggiornaPiantaInPanel(this.piante.size(),p.getNome());
+            try{
+                this.piante.add(p);
+            } catch (Exception e){
+                System.out.println(e);
+            }
+            System.out.println("Aggiungo 4 pomodori.");
         } else {
             System.out.println("Lo scompartimento è pieno.");
         }
@@ -53,13 +62,14 @@ public class Scompartimento implements EventListener, Comparable<Scompartimento>
     }
 
     public void raccogliOrtaggio(){
-        Iterator<Pianta> iter = this.piante.iterator();
-        
-        while(iter.hasNext()){
-            Pianta currPianta = (Pianta) iter.next();
-            if(currPianta.prontaDaRaccogliere()){
-                this.piante.remove(currPianta);
+        int index = 0;
+
+        for (Pianta pianta : piante) {
+            if(pianta.prontaDaRaccogliere()){
+                this.piante.remove(pianta);
+                this.controllerOrto.aggiornaPiantaInPanel(index,"Vuoto");
             }
+            index++;
         }
     }
 
@@ -87,6 +97,10 @@ public class Scompartimento implements EventListener, Comparable<Scompartimento>
     @Override
     public int compareTo(Scompartimento o) {
         return(o.getSensore() == this.getSensore()? 1 : -1);
+    }
+
+    public void addListener(PanelPianta p) {
+        
     }
 
 }

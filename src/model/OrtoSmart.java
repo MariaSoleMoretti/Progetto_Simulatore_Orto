@@ -1,6 +1,7 @@
 package model;
 
 import java.util.*;
+import model.piante.*;
 
 public class OrtoSmart {
     private static OrtoSmart instance;
@@ -25,10 +26,16 @@ public class OrtoSmart {
         return this.orto.keySet();
     }
 
-    public void aggiungiNuovoScompartimento(double maxUmidità) throws Exception{
+    // Invocato dal controller nel momento in cui crea un nuovo scompartimento
+    public Scompartimento aggiungiNuovoScompartimento(double maxUmidità) throws Exception{
         var sensore = new SensoreUmidità(0, maxUmidità);
         Scompartimento scompartimento = new Scompartimento(this.orto.size(),maxUmidità, sensore);
-        this.orto.putIfAbsent(scompartimento,sensore);
+        try{
+            this.orto.put(scompartimento,sensore);
+        } catch (Exception e){
+            throw new Exception();
+        }
+        return scompartimento;
     }
 
     public void  rimuoviScompartimento(Scompartimento scompartimento){
@@ -38,15 +45,16 @@ public class OrtoSmart {
         }
     }
 
-    public static void main(String[] args) {
-        OrtoSmart orto = new OrtoSmart();
-
-        Meteo meteo = new Meteo();
-
-        Set<Scompartimento> scompartiemnti = orto.getScompartimenti();
-
-        for (Scompartimento sc : scompartiemnti) {
-            meteo.addListener(sc);
+    public void aggiungiPianta(int index, Pianta p) {
+        List<Scompartimento> myList = new ArrayList<>(this.getScompartimenti());
+        Scompartimento sc = null;
+        try{
+            sc = myList.get(index);
+        } catch (Exception e){
+            System.out.println("[ OrtoSmart.aggiungiPianta ]:"+e+" myList.size: "+myList.size());
+        } finally{
+            if(sc != null) sc.aggiungiPianta(p);
         }
+
     }
 }

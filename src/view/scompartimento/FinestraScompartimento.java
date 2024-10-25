@@ -4,7 +4,7 @@ import java.awt.BorderLayout;
 import javax.swing.*;
 
 public class FinestraScompartimento {
-
+    final static int INDEX = 0;
     public static void main(String[] args){
 
         // Creo il frame e imposto titolo e altre proprieta'
@@ -15,8 +15,8 @@ public class FinestraScompartimento {
 
         // Imposta il BorderLayout sul frame
         frame.setLayout(new BorderLayout());
-        frame.add(new PanelScompartimento(), BorderLayout.CENTER);
-        frame.add(new PanelAzioni(), BorderLayout.SOUTH);
+        frame.add(new PanelScompartimento(INDEX), BorderLayout.CENTER);
+        frame.add(new PanelAzioni(INDEX), BorderLayout.SOUTH);
 
 
         //Adatto le dimensioni del frame ai componenti e disabilito il ridimensionamento
