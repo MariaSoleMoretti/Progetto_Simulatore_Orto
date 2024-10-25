@@ -20,7 +20,7 @@ public class PanelScompartimento extends JPanel{
         for (int i = 0; i < 4; i++) {
             PanelPianta p = new PanelPianta();
             this.add(p);
-            this.scompartimento.addListener(p);
+            this.controllerOrto.addListener(p);
         }
     }
 }

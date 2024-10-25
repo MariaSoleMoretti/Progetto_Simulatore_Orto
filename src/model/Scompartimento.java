@@ -98,9 +98,4 @@ public class Scompartimento implements EventListener, Comparable<Scompartimento>
     public int compareTo(Scompartimento o) {
         return(o.getSensore() == this.getSensore()? 1 : -1);
     }
-
-    public void addListener(PanelPianta p) {
-        
-    }
-
 }

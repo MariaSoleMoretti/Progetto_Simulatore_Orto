@@ -20,6 +20,10 @@ public class ControllerScompartimento{
         return instance;
     }
 
+    public ControllerScompartimento(){
+        this.listenersPanel = new ArrayList<PanelPianta>();
+    }
+
     public Scompartimento nuovoScompartimento() {
         try{
             return this.orto.aggiungiNuovoScompartimento(0.70);
@@ -43,7 +47,13 @@ public class ControllerScompartimento{
     //Funzoioen per aggiornare nella view il tipo di pianta coltivato
     // Utilizzata nella classe Scompartimento
     public void aggiornaPiantaInPanel(int index, String tipo){
-        var listener = this.listenersPanel.get(index);
+        PanelPianta listener = null; 
+        try{
+            listener = this.listenersPanel.get(index);
+        } catch (Exception e){
+            System.out.println("[ControllerScompartimento.aggiornaPiantaInPanel]: "+e);
+            System.out.println(this.listenersPanel.size());
+        }
         if(listener != null){
             listener.aggiungiPianta(tipo);
         }
