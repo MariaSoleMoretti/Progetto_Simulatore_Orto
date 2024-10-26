@@ -3,7 +3,6 @@ package view.scompartimento;
 import javax.swing.JPanel;
 
 import controller.*;
-import model.piante.*;
 
 
 public class PanelAzioni extends JPanel{
@@ -13,6 +12,7 @@ public class PanelAzioni extends JPanel{
         // Aggiungo un pulsante al pannello
         this.add(new BottoneInnaffia(controllerIrr));
         // Aggiungo un pulsante al pannello
-        this.add(new BottoneNuovaPianta(index, new Pomodoro()));
+        this.add(new BottoneNuovaPianta(index, "Pomodoro"));
+        this.add(new BottoneNuovaPianta(index, "Cipolla"));
     }
 }

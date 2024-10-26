@@ -34,7 +34,7 @@ public class Scompartimento implements EventListener, Comparable<Scompartimento>
             } catch (Exception e){
                 System.out.println(e);
             }
-            System.out.println("Aggiungo 4 pomodori.");
+            System.out.println("Aggiungo 4 "+p.getNome());
         } else {
             System.out.println("Lo scompartimento è pieno.");
         }

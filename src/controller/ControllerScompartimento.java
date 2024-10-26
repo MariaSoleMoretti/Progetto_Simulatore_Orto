@@ -3,8 +3,6 @@ package controller;
 import model.*;
 import model.piante.Pianta;
 import view.scompartimento.PanelPianta;
-
-import java.awt.event.*;
 import java.util.*;
 
 public class ControllerScompartimento{

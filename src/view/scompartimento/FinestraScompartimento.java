@@ -9,15 +9,13 @@ public class FinestraScompartimento {
 
         // Creo il frame e imposto titolo e altre proprieta'
         final JFrame frame = new JFrame();
-        frame.setTitle("Finestra Scompartimento");
+        frame.setTitle("orto");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(320,240);
 
         // Imposta il BorderLayout sul frame
         frame.setLayout(new BorderLayout());
         frame.add(new PanelScompartimento(INDEX), BorderLayout.CENTER);
         frame.add(new PanelAzioni(INDEX), BorderLayout.SOUTH);
-
 
         //Adatto le dimensioni del frame ai componenti e disabilito il ridimensionamento
         frame.pack();
