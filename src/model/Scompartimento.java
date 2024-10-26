@@ -31,11 +31,11 @@ public class Scompartimento implements EventListener, Comparable<Scompartimento>
         if(this.piante.size() < CAPIENZA){
             try{
                 this.piante.add(p);
-                this.controllerOrto.aggiornaPiantaInPanel(this.piante.size(),p.getNome());
+                this.controllerOrto.aggiornaPiantaInPanel(this.piante.size()-1,p);
             } catch (Exception e){
                 System.out.println(e);
             }
-            System.out.println("Aggiungo 4 "+p.getNome());
+            System.out.println("["+this.toString()+"]: Aggiungo 4 "+p.getNome());
         } else {
             System.out.println("Lo scompartimento è pieno.");
         }
@@ -56,14 +56,6 @@ public class Scompartimento implements EventListener, Comparable<Scompartimento>
         var iter = this.piante.iterator();
         Pianta pianta = null;
 
-        /*for (Pianta pianta : piante) {
-            if(pianta.prontaDaRaccogliere()){
-                this.piante.remove(pianta);
-                this.controllerOrto.aggiornaPiantaInPanel(index,"Vuoto");
-            }
-            index++;
-        }*/
-
         while(iter.hasNext() || !result){
             pianta = iter.next();
             if(pianta.prontaDaRaccogliere()){
@@ -73,7 +65,7 @@ public class Scompartimento implements EventListener, Comparable<Scompartimento>
         }
 
         this.piante.remove(pianta);
-        this.controllerOrto.aggiornaPiantaInPanel(index,"Vuoto");
+        this.controllerOrto.raccogliPianta(index);
         System.out.println(pianta.getNome()+" è stata raccolta!");
     }
 

@@ -5,6 +5,8 @@ import java.util.EventListener;
 
 import javax.swing.*;
 
+import model.piante.Pianta;
+
 public class PanelPianta extends JPanel implements EventListener{
     private JLabel tipoPianta = new JLabel("Vuoto");
     private JLabel stato = new JLabel("Stato: ");
@@ -25,12 +27,24 @@ public class PanelPianta extends JPanel implements EventListener{
     }
 
     //Invocato quando viene aggiunta una pianta allo slot
-    public void aggiungiPianta(String tipoPianta){
-        this.tipoPianta.setText(tipoPianta);
+    public void aggiungiPianta(Pianta pianta){
+        this.tipoPianta.setText(pianta.getNome());
+        this.stato.setText(pianta.getStatoCrescita().toString());
+        this.umidità.setText(pianta.getValUmidità()*100+"%");
     }
 
     //Invocato quando cambia lo stato della crescita della pianta
     public void aggiornaStato(String stato){
         this.stato.setText(stato);
+    }
+
+    public void resetSlot() {
+        SwingUtilities.invokeLater(() -> {
+            this.tipoPianta.setText("Vuoto");
+            this.stato.setText("Stato:");
+            this.umidità.setText("Umidita: 0%");
+            this.revalidate();
+            this.repaint();
+        });
     }
 }

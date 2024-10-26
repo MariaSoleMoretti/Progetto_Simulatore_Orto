@@ -14,21 +14,26 @@ package model.piante;
 
 public abstract class Pianta {
 
+    // ----------------------------------
     // Campi della classe
+    // ----------------------------------
     private String nome;
     private String[] stagioni;
     private double umiditàMin;
     private double umiditàMax;
+    private double getValUmidità;
     private StatoCrescita statoCorrenteCrescita;
     private Timer timer;
     private Scompartimento scompartimento = null;
 
-    //Costruttore
+    // ---------------------------------------------------------------------------------------------------------------
+    // Costruttore della classe
+    // ---------------------------------------------------------------------------------------------------------------
     public Pianta(Scompartimento sc, String nome, String[] stagioni, double min, double max, long delay, long period){
         this.nome = nome;
         this.stagioni = stagioni.clone();
         this.umiditàMin = min;
-        this.umiditàMax = max;
+        this.getValUmidità = this.umiditàMax = max;
         this.statoCorrenteCrescita = StatoCrescita.GERMINAZIONE;
         this.timer = new Timer();
         timer.schedule(new CrescitaPianta(), delay, period);
@@ -44,7 +49,9 @@ public abstract class Pianta {
         }
     }
 
-    // Metodi della classe
+    // ----------------------------------
+    // Metodi getter della classe
+    // ----------------------------------
     public String getNome(){
         return this.nome;
     }
@@ -60,11 +67,18 @@ public abstract class Pianta {
     public double getUmiditàMax(){
         return this.umiditàMax;
     }
+
+    public double getValUmidità() {
+        return this.getValUmidità;
+    } 
     
     public StatoCrescita getStatoCrescita(){
         return this.statoCorrenteCrescita;
     }
     
+    // ----------------------------------
+    // Metodi setter della classe
+    // ----------------------------------
     protected void setStatoCrescita(StatoCrescita nuovoStato){
         this.statoCorrenteCrescita = nuovoStato;
     }
@@ -81,6 +95,10 @@ public abstract class Pianta {
         }
     }
 
+    // ------------------------------------------------------------------------------
+    // Metodo per avere il riferimento alla scompartimento di cui la pianta fa parte.
+    // Viene definito nel momento in cui tramite gui si aggiunge una nuova pianta.
+    // ------------------------------------------------------------------------------
     public void setScompartimento(Scompartimento sc){
         this.scompartimento = sc;
     }
@@ -90,5 +108,6 @@ public abstract class Pianta {
     // ------------------------------------------------------------------------------
     public boolean prontaDaRaccogliere(){
         return (this.statoCorrenteCrescita == StatoCrescita.SENESCENZA) ? true : false;
-    } 
+    }
+
 } 

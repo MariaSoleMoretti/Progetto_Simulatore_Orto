@@ -35,7 +35,7 @@ public class ControllerScompartimento{
         return null;
     }
 
-    //Aggiunge un PanelPianta alla lista dei listeners
+    //Aggiunge un PanelPianta alla lista dei listeners nel momento della creazione dello Scompartimento
     public void addListener(PanelPianta p){
         try{
             this.listenersPanel.add(p);
@@ -46,7 +46,7 @@ public class ControllerScompartimento{
 
     //Funzoioen per aggiornare nella view il tipo di pianta coltivato
     // Utilizzata nella classe Scompartimento
-    public void aggiornaPiantaInPanel(int index, String tipo){
+    public void aggiornaPiantaInPanel(int index, Pianta pianta){
         PanelPianta listener = null; 
         try{
             listener = this.listenersPanel.get(index);
@@ -55,9 +55,22 @@ public class ControllerScompartimento{
             System.out.println(this.listenersPanel.size());
         }
         if(listener != null){
-            listener.aggiungiPianta(tipo);
+            listener.aggiungiPianta(pianta);
         }
-    }   
+    } 
+    
+    public void raccogliPianta(int index){
+        PanelPianta listener = null; 
+        try{
+            listener = this.listenersPanel.get(index);
+        } catch (Exception e){
+            System.out.println("[ControllerScompartimento.aggiornaPiantaInPanel]: "+e);
+            System.out.println(this.listenersPanel.size());
+        }
+        if(listener != null){
+            listener.resetSlot();
+        }
+    }
 
     public void aggiungiOrtaggio(int index,Pianta p){
         this.orto.aggiungiPianta(index, p);

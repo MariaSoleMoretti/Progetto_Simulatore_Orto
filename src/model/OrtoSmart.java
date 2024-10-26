@@ -6,9 +6,11 @@ import model.piante.*;
 public class OrtoSmart {
     private static OrtoSmart instance;
     private Map<Scompartimento,SensoreUmidità> orto;    //La mappa che contiene la corrispondenza scompartimento col il rispettivo sensore
+    private int numScompartimenti;
 
     public OrtoSmart(){
         this.orto = new HashMap<>();
+        this.numScompartimenti =0;
     }
 
     public static OrtoSmart getInstance() {
@@ -29,9 +31,10 @@ public class OrtoSmart {
     // Invocato dal controller nel momento in cui crea un nuovo scompartimento
     public Scompartimento aggiungiNuovoScompartimento(double maxUmidità) throws Exception{
         var sensore = new SensoreUmidità(0, maxUmidità);
-        Scompartimento scompartimento = new Scompartimento(this.orto.size(),maxUmidità, sensore);
+        Scompartimento scompartimento = new Scompartimento(this.numScompartimenti,maxUmidità, sensore);
         try{
             this.orto.put(scompartimento,sensore);
+            this.numScompartimenti++;
         } catch (Exception e){
             throw new Exception();
         }
@@ -42,6 +45,7 @@ public class OrtoSmart {
         var presente = this.orto.containsKey(scompartimento);
         if(presente){
             this.orto.remove(scompartimento);
+            this.numScompartimenti--;
         }
     }
 
