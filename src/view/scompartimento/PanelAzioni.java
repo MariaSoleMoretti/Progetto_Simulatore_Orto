@@ -10,9 +10,9 @@ public class PanelAzioni extends JPanel{
 
     public PanelAzioni(int index){
         // Aggiungo un pulsante al pannello
-        this.add(new BottoneInnaffia(controllerIrr));
+        this.add(new PulsanteInnaffia(controllerIrr));
         // Aggiungo un pulsante al pannello
-        this.add(new BottoneNuovaPianta(index, "Pomodoro"));
-        this.add(new BottoneNuovaPianta(index, "Cipolla"));
+        this.add(new PulsanteNuovaPianta(index, "Pomodoro"));
+        this.add(new PulsanteNuovaPianta(index, "Cipolla"));
     }
 }

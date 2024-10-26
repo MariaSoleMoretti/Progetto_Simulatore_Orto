@@ -1,6 +1,5 @@
 package view.scompartimento;
 
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,7 +10,7 @@ import model.piante.Cipolla;
 import model.piante.Pianta;
 import model.piante.Pomodoro;
 
-public class BottoneNuovaPianta extends JButton{
+public class PulsanteNuovaPianta extends JButton{
     final ControllerScompartimento controlleScomp = ControllerScompartimento.getInstance();
     private Pianta pianta;
 
@@ -22,7 +21,7 @@ public class BottoneNuovaPianta extends JButton{
     * @param index L'indice numerico dello scompartimento per identificarlo univocamente
     * @param tipoPianta Il tipo di pianta da aggiungere (es. "Pomodoro", "Cipolla") necessario per crearare un'istanza della classe corrispondente.
     */
-    public BottoneNuovaPianta(int index, String tipoPianta){
+    public PulsanteNuovaPianta(int index, String tipoPianta){
         super("Aggiungi "+ tipoPianta);
         switch (tipoPianta) {
             case "Pomodoro":
