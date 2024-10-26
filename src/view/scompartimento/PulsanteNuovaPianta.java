@@ -12,7 +12,6 @@ import model.piante.Pomodoro;
 
 public class PulsanteNuovaPianta extends JButton{
     final ControllerScompartimento controlleScomp = ControllerScompartimento.getInstance();
-    private Pianta pianta;
 
     /**
     * Costruttore del pulsante per aggiungere una nuova pianta.
@@ -23,28 +22,30 @@ public class PulsanteNuovaPianta extends JButton{
     */
     public PulsanteNuovaPianta(int index, String tipoPianta){
         super("Aggiungi "+ tipoPianta);
-        switch (tipoPianta) {
-            case "Pomodoro":
-                pianta = new Pomodoro();
-                break;
-            case "Cipolla":
-                pianta = new Cipolla();
-            default:
-                break;
-        }
-        this.addActionListener(new AggiungiPianta(index,pianta));
+        this.addActionListener(new AggiungiPianta(index,tipoPianta));
     }
 
     private class AggiungiPianta implements ActionListener{
-        private Pianta pianta;
+        private String tipoPianta;
         private int id;
-        public AggiungiPianta(int index,Pianta p){
+        public AggiungiPianta(int index, String tipo){
             this.id = index;
-            this.pianta = p;
+            this.tipoPianta = tipo;
         }
+
         @Override
         public void actionPerformed(ActionEvent e) {
-            controlleScomp.aggiungiOrtaggio(this.id,this.pianta);
+            Pianta pianta = null;
+            switch (this.tipoPianta) {
+                case "Pomodoro":
+                    pianta = new Pomodoro();
+                    break;
+                case "Cipolla":
+                    pianta = new Cipolla();
+                default:
+                    break;
+            }
+            controlleScomp.aggiungiOrtaggio(this.id,pianta);
         }
         
     }
