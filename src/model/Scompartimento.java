@@ -52,13 +52,29 @@ public class Scompartimento implements EventListener, Comparable<Scompartimento>
     //Invocato dalla pianta nel momento in cui raggiunge lo stato di Senescenza
     public void prontoAlRaccolto(){
         int index = 0;
-        for (Pianta pianta : piante) {
+        boolean result = false;
+        var iter = this.piante.iterator();
+        Pianta pianta = null;
+
+        /*for (Pianta pianta : piante) {
             if(pianta.prontaDaRaccogliere()){
                 this.piante.remove(pianta);
                 this.controllerOrto.aggiornaPiantaInPanel(index,"Vuoto");
             }
             index++;
+        }*/
+
+        while(iter.hasNext() || !result){
+            pianta = iter.next();
+            if(pianta.prontaDaRaccogliere()){
+                index = this.piante.indexOf(pianta);
+                result = true;
+            }
         }
+
+        this.piante.remove(pianta);
+        this.controllerOrto.aggiornaPiantaInPanel(index,"Vuoto");
+        System.out.println(pianta.getNome()+" è stata raccolta!");
     }
 
     //Metodo per aggiornare il valore di umidità del sensore

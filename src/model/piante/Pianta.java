@@ -75,7 +75,9 @@ public abstract class Pianta {
     public void cambiaFaseCrescita(){
         this.statoCorrenteCrescita = this.statoCorrenteCrescita.successivo();
         if(this.statoCorrenteCrescita == StatoCrescita.SENESCENZA){
+            System.out.println(this.nome+" è pronta al raccolto!");
             this.scompartimento.prontoAlRaccolto();
+            timer.cancel();
         }
     }
 

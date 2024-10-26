@@ -4,7 +4,6 @@ import java.awt.*;
 import javax.swing.*;
 
 import controller.ControllerScompartimento;
-import model.Scompartimento;
 
 public class PanelScompartimento extends JPanel{
     //private Scompartimento scompartimento;

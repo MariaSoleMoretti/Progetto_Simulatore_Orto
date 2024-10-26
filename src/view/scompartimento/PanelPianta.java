@@ -5,12 +5,10 @@ import java.util.EventListener;
 
 import javax.swing.*;
 
-import model.piante.StatoCrescita;
-
 public class PanelPianta extends JPanel implements EventListener{
     private JLabel tipoPianta = new JLabel("Vuoto");
-    private JLabel stato = new JLabel("");
-    private JLabel umidità = new JLabel("");
+    private JLabel stato = new JLabel("Stato: ");
+    private JLabel umidità = new JLabel("Umidità: 0%");
     
     public PanelPianta(){
         this.setBackground(Color.GREEN);
