@@ -27,10 +27,11 @@ public class Scompartimento implements EventListener, Comparable<Scompartimento>
     }
 
     public void aggiungiPianta(Pianta p){
+        p.setScompartimento(this);
         if(this.piante.size() < CAPIENZA){
-            this.controllerOrto.aggiornaPiantaInPanel(this.piante.size(),p.getNome());
             try{
                 this.piante.add(p);
+                this.controllerOrto.aggiornaPiantaInPanel(this.piante.size(),p.getNome());
             } catch (Exception e){
                 System.out.println(e);
             }
@@ -48,22 +49,9 @@ public class Scompartimento implements EventListener, Comparable<Scompartimento>
         return this.sensore;
     }
 
-    public boolean prontoAlRaccolto(){
-        boolean piantaMatura = false;
-        Iterator<Pianta> iter = this.piante.iterator();
-
-        while(iter.hasNext() && !piantaMatura){
-            Pianta currPianta = (Pianta) iter.next();
-            if(currPianta.prontaDaRaccogliere()){
-                return !piantaMatura;
-            }
-        }
-        return piantaMatura;
-    }
-
-    public void raccogliOrtaggio(){
+    //Invocato dalla pianta nel momento in cui raggiunge lo stato di Senescenza
+    public void prontoAlRaccolto(){
         int index = 0;
-
         for (Pianta pianta : piante) {
             if(pianta.prontaDaRaccogliere()){
                 this.piante.remove(pianta);
@@ -98,4 +86,9 @@ public class Scompartimento implements EventListener, Comparable<Scompartimento>
     public int compareTo(Scompartimento o) {
         return(o.getSensore() == this.getSensore()? 1 : -1);
     }
+
+    public void addListener(PanelPianta p) {
+        
+    }
+
 }

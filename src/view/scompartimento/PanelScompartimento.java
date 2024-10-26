@@ -7,11 +7,11 @@ import controller.ControllerScompartimento;
 import model.Scompartimento;
 
 public class PanelScompartimento extends JPanel{
-    private Scompartimento scompartimento;
+    //private Scompartimento scompartimento;
     final ControllerScompartimento controllerOrto = ControllerScompartimento.getInstance();
     
     public PanelScompartimento(int index) {
-        this.scompartimento = this.controllerOrto.nuovoScompartimento();
+        //this.scompartimento = this.controllerOrto.nuovoScompartimento();
         this.setBackground(Color.WHITE);
         this.setPreferredSize(new Dimension(300, 300));
         this.setLayout(new GridLayout(2, 2, 4, 4)); // 2 righe e 2 colonne

@@ -10,6 +10,7 @@ package model.piante;
  */
 
  import java.util.*;
+ import model.Scompartimento;
 
 public abstract class Pianta {
 
@@ -20,9 +21,10 @@ public abstract class Pianta {
     private double umiditàMax;
     private StatoCrescita statoCorrenteCrescita;
     private Timer timer;
+    private Scompartimento scompartimento = null;
 
     //Costruttore
-    public Pianta(String nome, String[] stagioni, double min, double max, long delay, long period){
+    public Pianta(Scompartimento sc, String nome, String[] stagioni, double min, double max, long delay, long period){
         this.nome = nome;
         this.stagioni = stagioni.clone();
         this.umiditàMin = min;
@@ -67,11 +69,18 @@ public abstract class Pianta {
         this.statoCorrenteCrescita = nuovoStato;
     }
 
-     // ------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------
     //Metodo per aggiornare lo stato della crescita della pianta
     // ------------------------------------------------------------------------------
     public void cambiaFaseCrescita(){
         this.statoCorrenteCrescita = this.statoCorrenteCrescita.successivo();
+        if(this.statoCorrenteCrescita == StatoCrescita.SENESCENZA){
+            this.scompartimento.prontoAlRaccolto();
+        }
+    }
+
+    public void setScompartimento(Scompartimento sc){
+        this.scompartimento = sc;
     }
 
     // ------------------------------------------------------------------------------

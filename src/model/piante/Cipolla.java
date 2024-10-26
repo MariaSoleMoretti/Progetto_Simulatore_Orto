@@ -11,6 +11,6 @@ public class Cipolla extends Pianta{
 
     //Costruttore
     public Cipolla(){
-        super(NOME, STAGIONI, UMIDITA_MIN, UMIDITA_MAX, DELAY, PERIOD);
+        super(null,NOME, STAGIONI, UMIDITA_MIN, UMIDITA_MAX, DELAY, PERIOD);
     }
 }

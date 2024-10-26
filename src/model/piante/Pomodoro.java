@@ -10,6 +10,6 @@ public class Pomodoro extends Pianta {
 
     //Costruttore
     public Pomodoro(){
-        super(NOME, STAGIONI, UMIDITA_MIN, UMIDITA_MAX, DELAY, PERIOD);
+        super(null,NOME, STAGIONI, UMIDITA_MIN, UMIDITA_MAX, DELAY, PERIOD);
     }
 }

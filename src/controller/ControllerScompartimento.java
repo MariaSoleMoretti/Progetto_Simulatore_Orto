@@ -5,6 +5,7 @@ import model.piante.Pianta;
 import view.scompartimento.PanelPianta;
 import java.util.*;
 
+
 public class ControllerScompartimento{
 
     final OrtoSmart orto = OrtoSmart.getInstance();
@@ -14,6 +15,7 @@ public class ControllerScompartimento{
     public static ControllerScompartimento getInstance() {
         if (instance == null) {
             instance = new ControllerScompartimento();
+            instance.nuovoScompartimento();
         }
         return instance;
     }
@@ -59,5 +61,11 @@ public class ControllerScompartimento{
 
     public void aggiungiOrtaggio(int index,Pianta p){
         this.orto.aggiungiPianta(index, p);
+    }
+
+    //Aggiorna la GUI quando c'è un cambiamento di stato della pianta
+    public void aggiornaStato(int index,String nuovoStato) {
+        PanelPianta panelPianta = this.listenersPanel.get(index);
+        panelPianta.aggiornaStato(nuovoStato);
     }
 }
