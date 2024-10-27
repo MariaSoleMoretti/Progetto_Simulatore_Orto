@@ -3,10 +3,11 @@ package view.scompartimento;
 import java.awt.*;
 import javax.swing.*;
 
+import controller.ControllerPianta;
 import controller.ControllerScompartimento;
 
 public class PanelScompartimento extends JPanel{
-    final ControllerScompartimento controllerOrto = ControllerScompartimento.getInstance();
+    final ControllerScompartimento controllerScompartimento = ControllerScompartimento.getInstance();
     
     public PanelScompartimento(int index) {
         this.setBackground(Color.WHITE);
@@ -17,7 +18,7 @@ public class PanelScompartimento extends JPanel{
         for (int i = 0; i < 4; i++) {
             PanelPianta p = new PanelPianta();
             this.add(p);
-            this.controllerOrto.addListener(p);
+            this.controllerScompartimento.addListeners(new ControllerPianta(p));
         }
     }
 }

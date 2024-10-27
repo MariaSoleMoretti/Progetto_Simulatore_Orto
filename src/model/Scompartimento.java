@@ -27,11 +27,13 @@ public class Scompartimento implements EventListener, Comparable<Scompartimento>
     }
 
     public void aggiungiPianta(Pianta p){
+        //Aggiungo all'istanza della pianta il riferimetno allo scompartimento
         p.setScompartimento(this);
+        //Se c'è uno slot libero, aggiungo la pianta
         if(this.piante.size() < CAPIENZA){
             try{
                 this.piante.add(p);
-                this.controllerOrto.aggiornaPiantaInPanel(this.piante.size()-1,p);
+                this.controllerOrto.aggiornaPanel(this.piante.size()-1,p);
             } catch (Exception e){
                 System.out.println(e);
             }

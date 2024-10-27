@@ -6,8 +6,8 @@ public class Cipolla extends Pianta{
                                         "Inverno"};
     final static double UMIDITA_MIN = 0.60;
     final static double UMIDITA_MAX = 0.70;
-    final static long DELAY = 4000;
-    final static long PERIOD = 4000;
+    final static long DELAY = 5000;
+    final static long PERIOD = 8000;
 
     //Costruttore
     public Cipolla(){

@@ -2,7 +2,6 @@ package controller;
 
 import model.*;
 import model.piante.Pianta;
-import view.scompartimento.PanelPianta;
 import java.util.*;
 
 
@@ -10,7 +9,7 @@ public class ControllerScompartimento{
 
     final OrtoSmart orto = OrtoSmart.getInstance();
     private static ControllerScompartimento instance;
-    private List<PanelPianta> listenersPanel;             //Lista di PanelPianta per ppoter aggiornare la view quando si aggiorna il model
+    private List<ControllerPianta> controllers;             //Lista di PanelPianta per ppoter aggiornare la view quando si aggiorna il model
 
     public static ControllerScompartimento getInstance() {
         if (instance == null) {
@@ -21,7 +20,7 @@ public class ControllerScompartimento{
     }
 
     public ControllerScompartimento(){
-        this.listenersPanel = new ArrayList<PanelPianta>();
+        this.controllers = new ArrayList<ControllerPianta>();
     }
 
     public Scompartimento nuovoScompartimento() {
@@ -35,10 +34,10 @@ public class ControllerScompartimento{
         return null;
     }
 
-    //Aggiunge un PanelPianta alla lista dei listeners nel momento della creazione dello Scompartimento
-    public void addListener(PanelPianta p){
+    //Aggiunge nella lista controllers i controller delle piante
+    public void addListeners(ControllerPianta cp){
         try{
-            this.listenersPanel.add(p);
+            this.controllers.add(cp);
         } catch (Exception e){
             System.out.println("Errore! \n "+ e );
         }
@@ -46,29 +45,31 @@ public class ControllerScompartimento{
 
     //Funzoioen per aggiornare nella view il tipo di pianta coltivato
     // Utilizzata nella classe Scompartimento
-    public void aggiornaPiantaInPanel(int index, Pianta pianta){
-        PanelPianta listener = null; 
+    public void aggiornaPanel(int index, Pianta pianta){
+        ControllerPianta listener = null; 
         try{
-            listener = this.listenersPanel.get(index);
+            listener = this.controllers.get(index);
         } catch (Exception e){
             System.out.println("[ControllerScompartimento.aggiornaPiantaInPanel]: "+e);
-            System.out.println(this.listenersPanel.size());
+            System.out.println(this.controllers.size());
         }
         if(listener != null){
-            listener.aggiungiPianta(pianta);
+            //Aggiungo all'istanza della pianto il controller corrispondente allo slot a cui è stata assegnata
+            pianta.setController(listener);
+            listener.aggiornaPiantaInPanel(pianta);
         }
     } 
     
     public void raccogliPianta(int index){
-        PanelPianta listener = null; 
+        ControllerPianta listener = null; 
         try{
-            listener = this.listenersPanel.get(index);
+            listener = this.controllers.get(index);
         } catch (Exception e){
             System.out.println("[ControllerScompartimento.aggiornaPiantaInPanel]: "+e);
-            System.out.println(this.listenersPanel.size());
+            System.out.println(this.controllers.size());
         }
         if(listener != null){
-            listener.resetSlot();
+            listener.raccogliPianta();
         }
     }
 
@@ -78,7 +79,7 @@ public class ControllerScompartimento{
 
     //Aggiorna la GUI quando c'è un cambiamento di stato della pianta
     public void aggiornaStato(int index,String nuovoStato) {
-        PanelPianta panelPianta = this.listenersPanel.get(index);
+        ControllerPianta panelPianta = this.controllers.get(index);
         panelPianta.aggiornaStato(nuovoStato);
     }
 }
