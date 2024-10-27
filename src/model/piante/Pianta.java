@@ -94,7 +94,7 @@ public abstract class Pianta {
         this.controller.aggiornaStato(this.statoCorrenteCrescita.toString() );
         if(this.statoCorrenteCrescita == StatoCrescita.SENESCENZA){
             System.out.println(this.nome+" è pronta al raccolto!");
-            this.scompartimento.prontoAlRaccolto();
+            //this.scompartimento.prontoAlRaccolto();
             timer.cancel();
         }
     }

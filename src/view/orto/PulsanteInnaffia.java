@@ -1,4 +1,4 @@
-package view.scompartimento;
+package view.orto;
 
 import javax.swing.*;
 import java.awt.event.*;

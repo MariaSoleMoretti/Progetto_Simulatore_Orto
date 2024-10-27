@@ -3,18 +3,20 @@ package controller;
 import model.*;
 import model.piante.Pianta;
 import java.util.*;
+import java.awt.event.*;
 
 
-public class ControllerScompartimento{
+public class ControllerScompartimento implements ActionListener{
 
     final OrtoSmart orto = OrtoSmart.getInstance();
     private static ControllerScompartimento instance;
+    private static Scompartimento scompartimento;
     private List<ControllerPianta> controllers;             //Lista di PanelPianta per ppoter aggiornare la view quando si aggiorna il model
 
     public static ControllerScompartimento getInstance() {
         if (instance == null) {
             instance = new ControllerScompartimento();
-            instance.nuovoScompartimento();
+            scompartimento = instance.nuovoScompartimento();
         }
         return instance;
     }
@@ -81,5 +83,11 @@ public class ControllerScompartimento{
     public void aggiornaStato(int index,String nuovoStato) {
         ControllerPianta panelPianta = this.controllers.get(index);
         panelPianta.aggiornaStato(nuovoStato);
+    }
+
+    //Raccoglie gli ortaggi che si trovano nello stato Senescenza
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        scompartimento.prontoAlRaccolto();
     }
 }

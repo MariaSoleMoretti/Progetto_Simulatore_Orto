@@ -13,7 +13,7 @@ public class Scompartimento implements EventListener, Comparable<Scompartimento>
     private SensoreUmidità sensore;
     private double valUmidità;
     final double valMaxUmidità; 
-    final ControllerScompartimento controllerOrto = ControllerScompartimento.getInstance();
+    final ControllerScompartimento controllerScomp = ControllerScompartimento.getInstance();
 
     public Scompartimento(int id,List<Pianta> piante, SensoreUmidità sensore, double max){
         this.ID = id;
@@ -33,7 +33,7 @@ public class Scompartimento implements EventListener, Comparable<Scompartimento>
         if(this.piante.size() < CAPIENZA){
             try{
                 this.piante.add(p);
-                this.controllerOrto.aggiornaPanel(this.piante.size()-1,p);
+                this.controllerScomp.aggiornaPanel(this.piante.size()-1,p);
             } catch (Exception e){
                 System.out.println(e);
             }
@@ -69,9 +69,10 @@ public class Scompartimento implements EventListener, Comparable<Scompartimento>
                 result = true;
             }
         }
-
+        //Rimuovo la pianta dalla lista
         this.piante.remove(pianta);
-        this.controllerOrto.raccogliPianta(index);
+        //Aggiorno la GUI
+        this.controllerScomp.raccogliPianta(index);
         System.out.println(pianta.getNome()+" è stata raccolta!");
     }
 
