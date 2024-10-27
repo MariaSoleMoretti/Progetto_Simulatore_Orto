@@ -62,10 +62,10 @@ public class ControllerScompartimento implements ActionListener{
         }
     } 
     
-    public void raccogliPianta(int index){
+    public void raccogliPianta(Pianta p){
         ControllerPianta listener = null; 
         try{
-            listener = this.controllers.get(index);
+            listener = p.getController();
         } catch (Exception e){
             System.out.println("[ControllerScompartimento.aggiornaPiantaInPanel]: "+e);
             System.out.println(this.controllers.size());

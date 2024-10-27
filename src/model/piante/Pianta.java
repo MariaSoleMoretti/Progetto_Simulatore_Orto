@@ -93,7 +93,7 @@ public abstract class Pianta {
         this.statoCorrenteCrescita = this.statoCorrenteCrescita.successivo();
         this.controller.aggiornaStato(this.statoCorrenteCrescita.toString() );
         if(this.statoCorrenteCrescita == StatoCrescita.SENESCENZA){
-            System.out.println(this.nome+" è pronta al raccolto!");
+            //System.out.println(this.nome+" è pronta al raccolto!");
             //this.scompartimento.prontoAlRaccolto();
             timer.cancel();
         }
@@ -116,6 +116,10 @@ public abstract class Pianta {
 
     public void setController(ControllerPianta listener) {
         this.controller = listener;
+    }
+
+    public ControllerPianta getController() {
+        return this.controller;
     }
 
 } 

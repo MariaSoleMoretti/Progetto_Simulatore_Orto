@@ -16,7 +16,7 @@ public class PanelPianta extends JPanel implements EventListener{
         this.setBackground(Color.GREEN);
         this.setLayout(new BorderLayout());
         // Imposto dimensioni fisse dello slot e bordi interni
-        this.setPreferredSize(new Dimension(100, 100));
+        this.setPreferredSize(new Dimension(200, 100));
         this.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         // Imposto l'allineamento orizzontale della label al centro
         tipoPianta.setHorizontalAlignment(SwingConstants.CENTER);

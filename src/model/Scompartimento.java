@@ -3,9 +3,8 @@ import java.util.*;
 
 import controller.*;
 import model.piante.Pianta;
-import view.scompartimento.PanelPianta;
 
-public class Scompartimento implements EventListener, Comparable<Scompartimento> {
+public class Scompartimento implements Comparable<Scompartimento> {
     
     final static int CAPIENZA = 4;
     final int ID;
@@ -26,6 +25,9 @@ public class Scompartimento implements EventListener, Comparable<Scompartimento>
         this(id,new ArrayList<>(), sensore, max);
     }
 
+    // --------------------------------------------------------------------------
+    // Metodo per aggiungere una pianta
+    // --------------------------------------------------------------------------
     public void aggiungiPianta(Pianta p){
         //Aggiungo all'istanza della pianta il riferimetno allo scompartimento
         p.setScompartimento(this);
@@ -43,6 +45,9 @@ public class Scompartimento implements EventListener, Comparable<Scompartimento>
         }
     }
 
+    // ----------------------------------
+    // Metodi getter della classe
+    // ----------------------------------
     public List<Pianta> getPiante(){
         return this.piante;
     }
@@ -55,34 +60,50 @@ public class Scompartimento implements EventListener, Comparable<Scompartimento>
         return this.ID;
     }
 
-    //Invocato dalla pianta nel momento in cui raggiunge lo stato di Senescenza
+    // -----------------------------------------------------------------------------
+    // Invocato dall controller per raccogliere una pianta.
+    // 
+    // Trova nella lista delle piante quella che ha raggiunto lo stato di Senescenza
+    // e la rimuove dalla lista.
+    // -----------------------------------------------------------------------------
     public void prontoAlRaccolto(){
         int index = 0;
         boolean result = false;
         var iter = this.piante.iterator();
         Pianta pianta = null;
 
-        while(iter.hasNext() || !result){
-            pianta = iter.next();
-            if(pianta.prontaDaRaccogliere()){
-                index = this.piante.indexOf(pianta);
-                result = true;
+        //Se ci sono piante nello scompartimento si raccoglie
+        if(!this.piante.isEmpty()){
+            while(iter.hasNext() && !result){
+                pianta = iter.next();
+                if(pianta.prontaDaRaccogliere()){
+                    index = this.piante.indexOf(pianta);
+                    result = true;
+                }
+            }
+            //Se ci sono piante nello stato di senescenza di procede nella raccolta
+            if(result){
+                //Rimuovo la pianta dalla lista
+                this.piante.remove(pianta);
+                //Aggiorno la GUI
+                this.controllerScomp.raccogliPianta(pianta);
+                System.out.println(pianta.getNome()+" è stata raccolta!");
             }
         }
-        //Rimuovo la pianta dalla lista
-        this.piante.remove(pianta);
-        //Aggiorno la GUI
-        this.controllerScomp.raccogliPianta(index);
-        System.out.println(pianta.getNome()+" è stata raccolta!");
     }
 
-    //Metodo per aggiornare il valore di umidità del sensore
+    // --------------------------------------------------------------------------
+    // Metodo per aggiornare il valore di umidità del sensore
+    // --------------------------------------------------------------------------
     public void aggiornaValoreUmidità(){
         this.sensore.aggiornaValoreUmidità(this.valUmidità);
     }
 
-    //Metodo invocato quando avviene l'evento Pioggia
-    //Setta il valore di umidità al massimo
+    // --------------------------------------------------------------------------
+    //  Metodo invocato quando avviene l'evento Pioggia.
+    //
+    //  Setta il valore di umidità al massimo.
+    // --------------------------------------------------------------------------
     public void resetUmidità(){
         this.valUmidità = valMaxUmidità;
         System.out.println(this.toString()+" aggiorna umidità: "+ this.valUmidità*100+"%");
@@ -100,10 +121,6 @@ public class Scompartimento implements EventListener, Comparable<Scompartimento>
     @Override
     public int compareTo(Scompartimento o) {
         return(o.getSensore() == this.getSensore()? 1 : -1);
-    }
-
-    public void addListener(PanelPianta p) {
-        
     }
 
 }
