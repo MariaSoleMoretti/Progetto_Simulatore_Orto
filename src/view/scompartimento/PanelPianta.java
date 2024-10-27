@@ -29,13 +29,17 @@ public class PanelPianta extends JPanel implements EventListener{
     //Invocato quando viene aggiunta una pianta allo slot
     public void aggiungiPianta(Pianta pianta){
         this.tipoPianta.setText(pianta.getNome());
-        this.stato.setText(pianta.getStatoCrescita().toString());
+        this.stato.setText("Stato: "+pianta.getStatoCrescita().toString());
         this.umidità.setText(pianta.getValUmidità()*100+"%");
     }
 
     //Invocato quando cambia lo stato della crescita della pianta
     public void aggiornaStato(String stato){
-        this.stato.setText(stato);
+        SwingUtilities.invokeLater(() -> {
+            this.stato.setText("Stato: "+stato);
+            this.revalidate();
+            this.repaint();
+        });
     }
 
     public void resetSlot() {

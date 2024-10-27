@@ -10,7 +10,9 @@ package model.piante;
  */
 
  import java.util.*;
- import model.Scompartimento;
+
+import controller.ControllerScompartimento;
+import model.Scompartimento;
 
 public abstract class Pianta {
 
@@ -25,6 +27,7 @@ public abstract class Pianta {
     private StatoCrescita statoCorrenteCrescita;
     private Timer timer;
     private Scompartimento scompartimento = null;
+    final ControllerScompartimento controllerOrto = ControllerScompartimento.getInstance();
 
     // ---------------------------------------------------------------------------------------------------------------
     // Costruttore della classe
@@ -88,6 +91,7 @@ public abstract class Pianta {
     // ------------------------------------------------------------------------------
     public void cambiaFaseCrescita(){
         this.statoCorrenteCrescita = this.statoCorrenteCrescita.successivo();
+        this.controllerOrto.aggiornaStato(this.scompartimento.getID(),this.statoCorrenteCrescita.toString() );
         if(this.statoCorrenteCrescita == StatoCrescita.SENESCENZA){
             System.out.println(this.nome+" è pronta al raccolto!");
             this.scompartimento.prontoAlRaccolto();

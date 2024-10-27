@@ -49,6 +49,10 @@ public class Scompartimento implements EventListener, Comparable<Scompartimento>
         return this.sensore;
     }
 
+    public int getID() {
+        return this.ID;
+    }
+
     //Invocato dalla pianta nel momento in cui raggiunge lo stato di Senescenza
     public void prontoAlRaccolto(){
         int index = 0;

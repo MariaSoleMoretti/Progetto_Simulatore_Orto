@@ -14,7 +14,8 @@ public class FinestraScompartimento {
 
         // Imposta il BorderLayout sul frame
         frame.setLayout(new BorderLayout());
-        frame.add(new PanelScompartimento(INDEX), BorderLayout.CENTER);
+        frame.add(new PanelScompartimento(INDEX), BorderLayout.WEST);
+        frame.add(new PanelAggiungiPiante(INDEX), BorderLayout.EAST);
         frame.add(new PanelAzioni(INDEX), BorderLayout.SOUTH);
 
         //Adatto le dimensioni del frame ai componenti e disabilito il ridimensionamento
