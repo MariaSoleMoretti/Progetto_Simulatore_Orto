@@ -3,14 +3,16 @@ import java.util.*;
 import model.Scompartimento;
 
 public class MyUtils {
-    
-    static public void notifyPioggia(List<Scompartimento> listeners){
+    // ----------------------------------------------
+    //  Setta il valore di umidità al valore massimo
+    // ----------------------------------------------
+    static public void notifyIrrigazione(List<Scompartimento> listeners){
         try{
             for (Scompartimento s : listeners) {
             s.resetUmidità();
         }
     } catch (NullPointerException e){
-        System.out.println(e);
+        System.out.println("[MyUtils]: Non ci sono listeners da notificare: "+e);
     }
     }
 }

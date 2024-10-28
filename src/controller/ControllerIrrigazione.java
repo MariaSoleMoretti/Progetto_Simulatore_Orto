@@ -15,8 +15,11 @@ public class ControllerIrrigazione implements ActionListener {
         return instance;
     }
 
+    /**
+     * Notifica l'evento Irrigazione a tutti gli scompartimenti dell'orto
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
-        MyUtils.notifyPioggia(orto.getScompartimenti());
+        MyUtils.notifyIrrigazione(orto.getScompartimenti());
     }
 }

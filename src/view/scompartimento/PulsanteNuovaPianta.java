@@ -33,6 +33,9 @@ public class PulsanteNuovaPianta extends JButton{
             this.tipoPianta = tipo;
         }
 
+        /**
+         * Quando l'azione viene performata si crea una nuova istanza della pianta associata al pulsante
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             Pianta pianta = null;

@@ -13,6 +13,7 @@ public class OrtoSmart {
         this.numScompartimenti =0;
     }
 
+    // Definiszione della classe OrtoSmart come singleton
     public static OrtoSmart getInstance() {
         if (instance == null) {
             instance = new OrtoSmart();
@@ -20,26 +21,31 @@ public class OrtoSmart {
         return instance;
     }
 
-    public void attivaIrrigazione(int i){
-
-    }
-
+    // Metodi getter della classe
     public List<Scompartimento> getScompartimenti(){
         return this.orto;
     }
 
-    // Invocato dal controller nel momento in cui crea un nuovo scompartimento
-    public Scompartimento aggiungiNuovoScompartimento(double maxUmidità) throws Exception{
-        Scompartimento scompartimento = new Scompartimento(this.numScompartimenti,maxUmidità);
+    /**
+    * Invocato dal controller nel momento in cui crea un nuovo scompartimento.
+    *   @param valUmidità -> valore iniziale di umidità dello socompartimento
+    *   @throws NullPointerException -> se la lista orto è null
+    */
+    public Scompartimento aggiungiNuovoScompartimento(double valUmidità) throws NullPointerException{
+        Scompartimento scompartimento = new Scompartimento(this.numScompartimenti,valUmidità);
         try{
             this.orto.add(scompartimento);
             this.numScompartimenti++;
-        } catch (Exception e){
-            throw new Exception();
+        } catch (NullPointerException e){
+            throw e;
         }
         return scompartimento;
     }
 
+    /**
+    * Invocato dal controller nel momento in cui rimuove uno scompartimento.
+    * @param scompartimento -> istanza dello scomaprtimento da rimuovere.
+    */
     public void  rimuoviScompartimento(Scompartimento scompartimento){
         var presente = this.orto.contains(scompartimento);
         if(presente){
@@ -48,6 +54,11 @@ public class OrtoSmart {
         }
     }
 
+    /**
+     * Invocato dal controller nel momento in cui si aggiunge una nuova pianta.
+     *  @param index -> indice dello scompartimento a cui aggiungere la pianta.
+     *  @param p -> istanza della pianta da aggiungere
+    */
     public void aggiungiPianta(int index, Pianta p) {
         List<Scompartimento> myList = new ArrayList<>(this.getScompartimenti());
         Scompartimento sc = null;

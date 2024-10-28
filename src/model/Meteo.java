@@ -105,7 +105,7 @@ public class Meteo {
         if(this.pioggia){
             System.out.println("Sta piovendo!\n");
             //Notifico agli scompartimenti che ha piovuto
-            MyUtils.notifyPioggia(listeners);
+            MyUtils.notifyIrrigazione(listeners);
         } else {
             System.out.println("Non piove....\n");
         }

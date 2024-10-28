@@ -7,38 +7,43 @@ import model.piante.Pianta;
 import view.scompartimento.PanelPianta;
 
 public class ControllerPianta {
-    final OrtoSmart orto = OrtoSmart.getInstance();
-    private PanelPianta listenerPanel;             //Lista di PanelPianta per ppoter aggiornare la view quando si aggiorna il model
+    final OrtoSmart orto = OrtoSmart.getInstance();     //Istanza singleton della classe OrtoSmart
+    private PanelPianta listenerPanel;                  //Lista di PanelPianta per poter aggiornare la view quando si aggiorna il model
 
     public ControllerPianta(PanelPianta p){
         this.listenerPanel = p;
     }
 
-    //Aggiunge un PanelPianta alla lista dei listeners nel momento della creazione dello Scompartimento
-    public void addListener(PanelPianta p){
-        this.listenerPanel = p;
-    }
-
-    //Funzoioen per aggiornare nella view il tipo di pianta coltivato
+    /**
+    * Funzoione per aggiornare nella view il tipo di pianta coltivato
+    *   @param pianta -> instanza della pianta da aggiungere tra i listeners
+    */
     public void aggiornaPiantaInPanel(Pianta pianta){
         listenerPanel.aggiungiPianta(pianta);
     } 
     
+    /**
+     * Metodo per aggiurnare la view della pianta quando viene raccolta
+    */
     public void raccogliPianta(){
         listenerPanel.resetSlot();
     }
 
-    public void aggiungiOrtaggio(int index,Pianta p){
-        this.orto.aggiungiPianta(index, p);
-    }
-
-    //Aggiorna la GUI quando c'è un cambiamento di stato della pianta
+    /**
+     * Aggiorna la GUI quando c'è un cambiamento di stato della pianta
+     *  @param nuovoStato -> Stringa contenente il nuovo stato della pianta
+     */
     public void aggiornaStato(String nuovoStato) {
         listenerPanel.aggiornaStato(nuovoStato);
     }
 
-    public void notificaInnaffiare(double umidità, Pianta p) {
-        Color colore = (umidità < p.getUmiditàMin())? Color.RED : Color.BLACK;
+    /**
+     * Metodo per aggiurnare la view della pianta quando viene raccolta
+     *  @param umidità -> nuovo valore di umidità
+     *  @param min -> valore minimo di umidità della pianta.
+     */
+    public void notificaInnaffiare(double umidità, double min) {
+        Color colore = (umidità < min)? Color.RED : Color.BLACK;
         var val = umidità*100;
         listenerPanel.bisognaInnaffiare((int)val,colore);
     }

@@ -4,8 +4,8 @@ import java.util.*;
 import model.piante.Pianta;
 
 public class SensoreUmidità {
-    private static final double VAL_MIN = 0.30;
-    private final double MAX = 0.70;
+    private static final double VAL_MIN = 0.30;     //Limite inferiore di umidità dello scompartimento
+    private final double VAL_MAX = 0.70;            //Limite superiore di umidità dello scompartimento
     private Scompartimento scompartimento;
     private Timer timer;
 
@@ -16,9 +16,7 @@ public class SensoreUmidità {
         timer.schedule(new RiduzioneUmidità(), 3000, 2000);
     }
 
-    // ------------------------------------------------------------------------------
     // Il seguente task diminuscie l'umidità del suolo dello scompartimento 
-    // ------------------------------------------------------------------------------ 
     private class RiduzioneUmidità extends TimerTask {
         @Override
         public void run() {
@@ -27,9 +25,11 @@ public class SensoreUmidità {
         }
     }
 
-    // --------------------------------------------------------------------------
-    // Metodo per aggiornare il valore di umidità del sensore
-    // --------------------------------------------------------------------------
+    /**
+     * Metodo per diminuire il valore di umidità del sensore. Quando il valore di umidità
+     * dello scompartimento è inferiore al valore minimo definito dalla costante VAL_MIN
+     * si interrempe il timer.
+     */
     private void diminuisciUmidità(){
         var nuovoValore = this.scompartimento.getValUmidità()-0.05;
         if(nuovoValore < VAL_MIN){
@@ -41,14 +41,22 @@ public class SensoreUmidità {
         }
     }
 
+    /**
+     * Metodo invocato per cambiare il valore dell'umidità nel model Scompartimento. 
+     * Quando avviene l'evento di irrigazione si crea una nuova istanza del timer.
+     */
     public void aggiornaValUmidita(){
-        this.scompartimento.setValUmidità(MAX);
+        this.scompartimento.setValUmidità(VAL_MAX);
         if(timer == null){
             timer.schedule(new RiduzioneUmidità(), 3000, 5000);
         }
-        notificaPiante(MAX);
+        notificaPiante(VAL_MAX);
     }
 
+    /**
+     * Metodo invocato per notificare al model Pianta un modifica del valore dell'umidità
+     *  @param valUmidità -> nuovo valore di umidità da notificare alle piante.
+     */
     private void notificaPiante(double valUmidità){
         List<Pianta> piante = this.scompartimento.getPiante();
         //Si notifica alla pianta un cambiamento del valore dell'umidità dello scompartimento
