@@ -11,7 +11,6 @@ import utils.MyUtils;
  *  - la temperatura, che andrà a diminuire l'umidità del suolo;
  *  - la pioggia, che, al contrario della precedente, aumenterà l'umidità del suolo.
  */
-
 public class Meteo {
 
     //Metodi della classe
@@ -19,7 +18,7 @@ public class Meteo {
     private boolean pioggia;
     private Random rnd;
     private Timer timer;
-    private Set<Scompartimento> listeners;
+    private List<Scompartimento> listeners;
 
     //Costruttore della classe
     public Meteo(){
@@ -29,7 +28,7 @@ public class Meteo {
         this.timer = new Timer();
         timer.schedule(new Pioggia(), 5000, 8000);
         timer.schedule(new Temperatura(), 2000, 3000);
-        this.listeners = new TreeSet<>();
+        this.listeners = new LinkedList<>();
     }
 
     private class Pioggia extends TimerTask {

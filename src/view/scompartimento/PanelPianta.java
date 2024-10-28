@@ -30,7 +30,7 @@ public class PanelPianta extends JPanel implements EventListener{
     public void aggiungiPianta(Pianta pianta){
         this.tipoPianta.setText(pianta.getNome());
         this.stato.setText("Stato: "+pianta.getStatoCrescita().toString());
-        this.umidità.setText(pianta.getValUmidità()*100+"%");
+        this.umidità.setText("Umidita: "+pianta.getValUmidità()*100+"%");
     }
 
     //Invocato quando cambia lo stato della crescita della pianta
@@ -47,6 +47,16 @@ public class PanelPianta extends JPanel implements EventListener{
             this.tipoPianta.setText("Vuoto");
             this.stato.setText("Stato:");
             this.umidità.setText("Umidita: 0%");
+            this.umidità.setForeground(Color.BLACK);
+            this.revalidate();
+            this.repaint();
+        });
+    }
+
+    public void bisognaInnaffiare(int val, Color colore) {
+        SwingUtilities.invokeLater(() -> {
+            this.umidità.setForeground(colore);
+            this.umidità.setText("Umidita: "+val+"%");
             this.revalidate();
             this.repaint();
         });

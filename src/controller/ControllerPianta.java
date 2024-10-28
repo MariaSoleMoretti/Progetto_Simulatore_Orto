@@ -1,5 +1,7 @@
 package controller;
 
+import java.awt.Color;
+
 import model.OrtoSmart;
 import model.piante.Pianta;
 import view.scompartimento.PanelPianta;
@@ -33,5 +35,11 @@ public class ControllerPianta {
     //Aggiorna la GUI quando c'è un cambiamento di stato della pianta
     public void aggiornaStato(String nuovoStato) {
         listenerPanel.aggiornaStato(nuovoStato);
+    }
+
+    public void notificaInnaffiare(double umidità, Pianta p) {
+        Color colore = (umidità < p.getUmiditàMin())? Color.RED : Color.BLACK;
+        var val = umidità*100;
+        listenerPanel.bisognaInnaffiare((int)val,colore);
     }
 }

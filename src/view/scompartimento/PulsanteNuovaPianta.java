@@ -38,10 +38,10 @@ public class PulsanteNuovaPianta extends JButton{
             Pianta pianta = null;
             switch (this.tipoPianta) {
                 case "Pomodoro":
-                    pianta = new Pomodoro();
+                    pianta = new Pomodoro(controlleScomp.getScompartimento());
                     break;
                 case "Cipolla":
-                    pianta = new Cipolla();
+                    pianta = new Cipolla(controlleScomp.getScompartimento());
                 default:
                     break;
             }

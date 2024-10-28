@@ -14,15 +14,15 @@ public class Scompartimento implements Comparable<Scompartimento> {
     final double valMaxUmidità; 
     final ControllerScompartimento controllerScomp = ControllerScompartimento.getInstance();
 
-    public Scompartimento(int id,List<Pianta> piante, SensoreUmidità sensore, double max){
+    public Scompartimento(int id,List<Pianta> piante, double max){
         this.ID = id;
         this.piante = new ArrayList<>(piante);
-        this.sensore = sensore;
-        this.valMaxUmidità = max;
+        this.sensore = new SensoreUmidità(this);
+        this.valMaxUmidità = this.valUmidità= max;
     }
 
-    public Scompartimento(int id, double max,SensoreUmidità sensore){
-        this(id,new ArrayList<>(), sensore, max);
+    public Scompartimento(int id, double max){
+        this(id,new ArrayList<>(), max);
     }
 
     // --------------------------------------------------------------------------
@@ -60,6 +60,14 @@ public class Scompartimento implements Comparable<Scompartimento> {
         return this.ID;
     }
 
+    public double getValUmidità() {
+        return this.valUmidità;
+    }
+
+    public void setValUmidità(double val) {
+        this.valUmidità = val;
+    }
+
     // -----------------------------------------------------------------------------
     // Invocato dall controller per raccogliere una pianta.
     // 
@@ -67,7 +75,6 @@ public class Scompartimento implements Comparable<Scompartimento> {
     // e la rimuove dalla lista.
     // -----------------------------------------------------------------------------
     public void prontoAlRaccolto(){
-        int index = 0;
         boolean result = false;
         var iter = this.piante.iterator();
         Pianta pianta = null;
@@ -77,7 +84,6 @@ public class Scompartimento implements Comparable<Scompartimento> {
             while(iter.hasNext() && !result){
                 pianta = iter.next();
                 if(pianta.prontaDaRaccogliere()){
-                    index = this.piante.indexOf(pianta);
                     result = true;
                 }
             }
@@ -93,24 +99,13 @@ public class Scompartimento implements Comparable<Scompartimento> {
     }
 
     // --------------------------------------------------------------------------
-    // Metodo per aggiornare il valore di umidità del sensore
-    // --------------------------------------------------------------------------
-    public void aggiornaValoreUmidità(){
-        this.sensore.aggiornaValoreUmidità(this.valUmidità);
-    }
-
-    // --------------------------------------------------------------------------
     //  Metodo invocato quando avviene l'evento Pioggia.
     //
     //  Setta il valore di umidità al massimo.
     // --------------------------------------------------------------------------
     public void resetUmidità(){
-        this.valUmidità = valMaxUmidità;
-        System.out.println(this.toString()+" aggiorna umidità: "+ this.valUmidità*100+"%");
-    }
-
-    public void modificaTemperatura(double temp) {
-        
+        this.sensore.aggiornaValUmidita();
+        System.out.println(this.toString()+" aggiorna umidità!");
     }
 
     @Override

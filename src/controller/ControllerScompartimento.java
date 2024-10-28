@@ -8,9 +8,9 @@ import java.awt.event.*;
 
 public class ControllerScompartimento implements ActionListener{
 
-    final OrtoSmart orto = OrtoSmart.getInstance();
+    final OrtoSmart orto = OrtoSmart.getInstance();         //Riferimento al singleton dell'orto smart
     private static ControllerScompartimento instance;
-    private static Scompartimento scompartimento;
+    private static Scompartimento scompartimento;           //Riferimento allo scompartimento corrispondente
     private List<ControllerPianta> controllers;             //Lista di PanelPianta per ppoter aggiornare la view quando si aggiorna il model
 
     public static ControllerScompartimento getInstance() {
@@ -36,7 +36,9 @@ public class ControllerScompartimento implements ActionListener{
         return null;
     }
 
-    //Aggiunge nella lista controllers i controller delle piante
+    // ------------------------------------------------------------
+    //  Aggiunge nella lista controllers i controller delle piante
+    // ------------------------------------------------------------
     public void addListeners(ControllerPianta cp){
         try{
             this.controllers.add(cp);
@@ -45,8 +47,10 @@ public class ControllerScompartimento implements ActionListener{
         }
     }
 
+    // ---------------------------------------------------------------
     //Funzoioen per aggiornare nella view il tipo di pianta coltivato
     // Utilizzata nella classe Scompartimento
+    // ---------------------------------------------------------------
     public void aggiornaPanel(int index, Pianta pianta){
         ControllerPianta listener = null; 
         try{
@@ -62,6 +66,11 @@ public class ControllerScompartimento implements ActionListener{
         }
     } 
     
+    // --------------------------------------------------------------------------------------------
+    // Seleziona il controller corrispondete alla pianta che si vuole rimuovere.
+    //
+    // Successivamente invoca il metodo ControllerPianta.raccogliaPianta che fa il reset dello slot.
+    // ---------------------------------------------------------------------------------------------
     public void raccogliPianta(Pianta p){
         ControllerPianta listener = null; 
         try{
@@ -79,15 +88,23 @@ public class ControllerScompartimento implements ActionListener{
         this.orto.aggiungiPianta(index, p);
     }
 
-    //Aggiorna la GUI quando c'è un cambiamento di stato della pianta
+    // -----------------------------------------------------------------
+    //  Aggiorna la GUI quando c'è un cambiamento di stato della pianta
+    // -----------------------------------------------------------------
     public void aggiornaStato(int index,String nuovoStato) {
         ControllerPianta panelPianta = this.controllers.get(index);
         panelPianta.aggiornaStato(nuovoStato);
     }
 
-    //Raccoglie gli ortaggi che si trovano nello stato Senescenza
+    // ------------------------------------------------------------
+    // Raccoglie gli ortaggi che si trovano nello stato Senescenza
+    // ------------------------------------------------------------
     @Override
     public void actionPerformed(ActionEvent e) {
         scompartimento.prontoAlRaccolto();
+    }
+
+    public Scompartimento getScompartimento() {
+        return scompartimento;
     }
 }

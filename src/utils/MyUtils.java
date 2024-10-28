@@ -1,10 +1,10 @@
 package utils;
-import java.util.Set;
+import java.util.*;
 import model.Scompartimento;
 
 public class MyUtils {
     
-    static public void notifyPioggia(Set<Scompartimento> listeners){
+    static public void notifyPioggia(List<Scompartimento> listeners){
         try{
             for (Scompartimento s : listeners) {
             s.resetUmidità();

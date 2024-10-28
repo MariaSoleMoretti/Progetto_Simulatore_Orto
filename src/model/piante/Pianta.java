@@ -9,7 +9,8 @@ package model.piante;
  *      - range di umidità del suolo ottimale per la crescita della pianta.
  */
 
- import java.util.*;
+ import java.awt.Color;
+import java.util.*;
 
 import controller.ControllerPianta;
 import model.Scompartimento;
@@ -22,7 +23,6 @@ public abstract class Pianta {
     private String nome;
     private String[] stagioni;
     private double umiditàMin;
-    private double umiditàMax;
     private double getValUmidità;
     private StatoCrescita statoCorrenteCrescita;
     private Timer timer;
@@ -32,11 +32,12 @@ public abstract class Pianta {
     // ---------------------------------------------------------------------------------------------------------------
     // Costruttore della classe
     // ---------------------------------------------------------------------------------------------------------------
-    public Pianta(Scompartimento sc, String nome, String[] stagioni, double min, double max, long delay, long period){
+    public Pianta(Scompartimento sc, String nome, String[] stagioni, double min, long delay, long period){
+        this.scompartimento = sc;
         this.nome = nome;
         this.stagioni = stagioni.clone();
         this.umiditàMin = min;
-        this.getValUmidità = this.umiditàMax = max;
+        this.getValUmidità = this.scompartimento.getValUmidità();
         this.statoCorrenteCrescita = StatoCrescita.GERMINAZIONE;
         this.timer = new Timer();
         timer.schedule(new CrescitaPianta(), delay, period);
@@ -67,10 +68,6 @@ public abstract class Pianta {
         return this.umiditàMin;
     }
 
-    public double getUmiditàMax(){
-        return this.umiditàMax;
-    }
-
     public double getValUmidità() {
         return this.getValUmidità;
     } 
@@ -78,12 +75,20 @@ public abstract class Pianta {
     public StatoCrescita getStatoCrescita(){
         return this.statoCorrenteCrescita;
     }
+
+    public ControllerPianta getController() {
+        return this.controller;
+    }
     
     // ----------------------------------
     // Metodi setter della classe
     // ----------------------------------
     protected void setStatoCrescita(StatoCrescita nuovoStato){
         this.statoCorrenteCrescita = nuovoStato;
+    }
+
+    public void setController(ControllerPianta listener) {
+        this.controller = listener;
     }
 
     // ------------------------------------------------------------------------------
@@ -114,12 +119,8 @@ public abstract class Pianta {
         return (this.statoCorrenteCrescita == StatoCrescita.SENESCENZA) ? true : false;
     }
 
-    public void setController(ControllerPianta listener) {
-        this.controller = listener;
-    }
-
-    public ControllerPianta getController() {
-        return this.controller;
+    public void controllaUmidità(double umidità) {
+        this.controller.notificaInnaffiare(umidità, this);
     }
 
 } 
