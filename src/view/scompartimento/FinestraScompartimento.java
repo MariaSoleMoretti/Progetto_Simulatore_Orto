@@ -9,7 +9,8 @@ public class FinestraScompartimento extends JFrame {
     private static int INDEX;
     private static ControllerScompartimento controller;     //Controller dello scompartimento
 
-    public FinestraScompartimento(){
+    public FinestraScompartimento(int index){
+        INDEX = index;
         // Creo il frame e imposto titolo e altre proprieta'
         this.setTitle("orto");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
