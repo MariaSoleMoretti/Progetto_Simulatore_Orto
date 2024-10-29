@@ -9,20 +9,12 @@ import java.awt.event.*;
 public class ControllerScompartimento implements ActionListener{
 
     final OrtoSmart orto = OrtoSmart.getInstance();         //Riferimento al singleton dell'orto smart
-    private static ControllerScompartimento instance;
     private static Scompartimento scompartimento;           //Riferimento allo scompartimento corrispondente
     private List<ControllerPianta> controllers;             //Lista di PanelPianta per ppoter aggiornare la view quando si aggiorna il model
 
-    public static ControllerScompartimento getInstance() {
-        if (instance == null) {
-            instance = new ControllerScompartimento();
-            scompartimento = instance.nuovoScompartimento();
-        }
-        return instance;
-    }
-
     //  Costruttore della classe
     public ControllerScompartimento(){
+        scompartimento = nuovoScompartimento();
         this.controllers = new ArrayList<ControllerPianta>();
     }
 
@@ -31,7 +23,7 @@ public class ControllerScompartimento implements ActionListener{
     */
     public Scompartimento nuovoScompartimento() {
         try{
-            return this.orto.aggiungiNuovoScompartimento(0.70);
+            return this.orto.aggiungiNuovoScompartimento(0.70,this);
         } catch (Exception ex){
             System.out.println("Errore! Non è stato possibile aggiungere lo scompartimento.");
         } finally {

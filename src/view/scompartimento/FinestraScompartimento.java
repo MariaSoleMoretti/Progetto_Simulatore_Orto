@@ -3,26 +3,29 @@ package view.scompartimento;
 import java.awt.BorderLayout;
 import javax.swing.*;
 
-public class FinestraScompartimento {
-    final static int INDEX = 0;
-    public static void main(String[] args){
+import controller.ControllerScompartimento;
 
+public class FinestraScompartimento extends JFrame {
+    private static int INDEX;
+    private static ControllerScompartimento controller;     //Controller dello scompartimento
+
+    public FinestraScompartimento(){
         // Creo il frame e imposto titolo e altre proprieta'
-        final JFrame frame = new JFrame();
-        frame.setTitle("orto");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setTitle("orto");
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        controller = new ControllerScompartimento();
         // Imposta il BorderLayout sul frame
-        frame.setLayout(new BorderLayout());
-        frame.add(new PanelScompartimento(INDEX), BorderLayout.WEST);
-        frame.add(new PanelAggiungiPiante(INDEX), BorderLayout.EAST);
-        frame.add(new PanelAzioni(INDEX), BorderLayout.SOUTH);
+        this.setLayout(new BorderLayout());
+        this.add(new PanelScompartimento(INDEX,controller), BorderLayout.WEST);
+        this.add(new PanelAggiungiPiante(INDEX,controller), BorderLayout.EAST);
+        this.add(new PanelAzioni(INDEX,controller), BorderLayout.SOUTH);
 
         //Adatto le dimensioni del frame ai componenti e disabilito il ridimensionamento
-        frame.pack();
-        frame.setResizable(false);
+        this.pack();
+        this.setResizable(false);
 
         // Alla fine rendo visible il JFrame
-        frame.setVisible(true);
+        this.setVisible(true);
     }
 }

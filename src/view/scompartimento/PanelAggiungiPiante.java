@@ -1,25 +1,28 @@
 package view.scompartimento;
 
 import javax.swing.*;
+
+import controller.ControllerScompartimento;
+
 import java.awt.*;
 
 
 public class PanelAggiungiPiante extends JPanel{
 
-    public PanelAggiungiPiante(int index){
+    public PanelAggiungiPiante(int index, ControllerScompartimento controller){
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         //Creo i pulsanti
-        JButton buttonPomodoro = new PulsanteNuovaPianta(index, "Pomodoro");
+        JButton buttonPomodoro = new PulsanteNuovaPianta(index, "Pomodoro",controller);
         buttonPomodoro.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JButton buttonCipolla = new PulsanteNuovaPianta(index, "Cipolla");
+        JButton buttonCipolla = new PulsanteNuovaPianta(index, "Cipolla",controller);
         buttonCipolla.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JButton buttonInsalata = new PulsanteNuovaPianta(index, "Insalata");
+        JButton buttonInsalata = new PulsanteNuovaPianta(index, "Insalata",controller);
         buttonInsalata.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JButton buttonCarota = new PulsanteNuovaPianta(index, "Carota");
+        JButton buttonCarota = new PulsanteNuovaPianta(index, "Carota",controller);
         buttonCarota.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Aggiungo un pulsante al pannello

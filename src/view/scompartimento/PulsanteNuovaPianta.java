@@ -13,8 +13,7 @@ import model.piante.Pianta;
 import model.piante.Pomodoro;
 
 public class PulsanteNuovaPianta extends JButton{
-    final ControllerScompartimento controlleScomp = ControllerScompartimento.getInstance();
-
+    final ControllerScompartimento controlleScomp;
     /**
     * Costruttore del pulsante per aggiungere una nuova pianta.
     * Questo costruttore crea un pulsante personalizzato per aggiungere una nuova pianta di un tipo specifico all'orto.
@@ -22,8 +21,9 @@ public class PulsanteNuovaPianta extends JButton{
     * @param index L'indice numerico dello scompartimento per identificarlo univocamente
     * @param tipoPianta Il tipo di pianta da aggiungere (es. "Pomodoro", "Cipolla") necessario per crearare un'istanza della classe corrispondente.
     */
-    public PulsanteNuovaPianta(int index, String tipoPianta){
+    public PulsanteNuovaPianta(int index, String tipoPianta, ControllerScompartimento contr){
         super("Aggiungi "+ tipoPianta);
+        this.controlleScomp = contr;
         this.addActionListener(new AggiungiPianta(index,tipoPianta));
     }
 

@@ -11,17 +11,14 @@ public class Scompartimento {
     private List<Pianta> piante;
     private SensoreUmidità sensore;
     private double valUmidità;
-    final ControllerScompartimento controllerScomp = ControllerScompartimento.getInstance();
+    final ControllerScompartimento controllerScomp;
 
-    public Scompartimento(int id,List<Pianta> piante, double max){
+    public Scompartimento(int id, double max, ControllerScompartimento contr){
         this.ID = id;
-        this.piante = new ArrayList<>(piante);
+        this.controllerScomp = contr;
+        this.piante = new ArrayList<>();
         this.sensore = new SensoreUmidità(this);
         this.valUmidità= max;
-    }
-
-    public Scompartimento(int id, double max){
-        this(id,new ArrayList<>(), max);
     }
 
     /**

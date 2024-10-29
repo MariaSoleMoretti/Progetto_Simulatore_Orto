@@ -1,6 +1,8 @@
 package model;
 
 import java.util.*;
+
+import controller.ControllerScompartimento;
 import model.piante.*;
 
 public class OrtoSmart {
@@ -31,8 +33,8 @@ public class OrtoSmart {
     *   @param valUmidità -> valore iniziale di umidità dello socompartimento
     *   @throws NullPointerException -> se la lista orto è null
     */
-    public Scompartimento aggiungiNuovoScompartimento(double valUmidità) throws NullPointerException{
-        Scompartimento scompartimento = new Scompartimento(this.numScompartimenti,valUmidità);
+    public Scompartimento aggiungiNuovoScompartimento(double valUmidità, ControllerScompartimento contr) throws NullPointerException{
+        Scompartimento scompartimento = new Scompartimento(this.numScompartimenti,valUmidità,contr);
         try{
             this.orto.add(scompartimento);
             this.numScompartimenti++;

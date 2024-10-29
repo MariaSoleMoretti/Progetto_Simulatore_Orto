@@ -7,14 +7,15 @@ import controller.ControllerPianta;
 import controller.ControllerScompartimento;
 
 public class PanelScompartimento extends JPanel{
-    final ControllerScompartimento controllerScompartimento = ControllerScompartimento.getInstance();
+    final ControllerScompartimento controllerScompartimento;
     
     /**
      * Costruttore del panel dello scompartimento. Instanzia 4 istanze della classe PanelPianta in cui verranno aggiunte le piante
      * 
      * @param index -> Indice dello scompartimento a cui è associato il panel
      */
-    public PanelScompartimento(int index) {
+    public PanelScompartimento(int index, ControllerScompartimento controller) {
+        this.controllerScompartimento = controller;
         this.setBackground(Color.WHITE);
         this.setPreferredSize(new Dimension(300, 300));
         //Realizzazione di una griglia per contenere i panel delle piante
@@ -26,5 +27,9 @@ public class PanelScompartimento extends JPanel{
             this.add(p);
             this.controllerScompartimento.addListeners(new ControllerPianta(p));
         }
+    }
+
+    public ControllerScompartimento getController(){
+        return this.controllerScompartimento;
     }
 }
