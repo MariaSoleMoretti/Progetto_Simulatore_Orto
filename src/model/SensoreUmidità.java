@@ -21,7 +21,6 @@ public class SensoreUmidità {
         @Override
         public void run() {
             diminuisciUmidità();
-            //System.out.println("Aggiornato Umidità");
         }
     }
 
@@ -48,6 +47,7 @@ public class SensoreUmidità {
     public void aggiornaValUmidita(){
         this.scompartimento.setValUmidità(VAL_MAX);
         if(timer == null){
+            this.timer = new Timer();
             timer.schedule(new RiduzioneUmidità(), 3000, 5000);
         }
         notificaPiante(VAL_MAX);
@@ -60,8 +60,10 @@ public class SensoreUmidità {
     private void notificaPiante(double valUmidità){
         List<Pianta> piante = this.scompartimento.getPiante();
         //Si notifica alla pianta un cambiamento del valore dell'umidità dello scompartimento
-        for (Pianta pianta : piante) {
-            pianta.controllaUmidità(valUmidità);
+        if(!piante.isEmpty()){
+            for (Pianta pianta : piante) {
+                pianta.controllaUmidità(valUmidità);
+            }
         }
     }
 }

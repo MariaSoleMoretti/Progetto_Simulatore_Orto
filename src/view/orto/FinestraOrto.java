@@ -6,7 +6,7 @@ public class FinestraOrto extends JFrame{
 
     public FinestraOrto(){
         // Creo il frame e imposto titolo e altre proprieta'
-       this.setTitle("Orto");
+       this.setTitle("Orto Smart");
 
        //Aggiunge al frame il pulsante per aggiungere un nuovo scompartimento
        this.add(new BottoneNuovoScomp());

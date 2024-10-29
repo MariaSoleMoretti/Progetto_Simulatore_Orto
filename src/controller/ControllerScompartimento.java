@@ -3,13 +3,12 @@ package controller;
 import model.*;
 import model.piante.Pianta;
 import java.util.*;
-import java.awt.event.*;
 
 
-public class ControllerScompartimento implements ActionListener{
+public class ControllerScompartimento{
 
     final OrtoSmart orto = OrtoSmart.getInstance();         //Riferimento al singleton dell'orto smart
-    private static Scompartimento scompartimento;           //Riferimento allo scompartimento corrispondente
+    private final Scompartimento scompartimento;           //Riferimento allo scompartimento corrispondente
     private List<ControllerPianta> controllers;             //Lista di PanelPianta per ppoter aggiornare la view quando si aggiorna il model
 
     //  Costruttore della classe
@@ -88,14 +87,6 @@ public class ControllerScompartimento implements ActionListener{
     */
     public void aggiungiOrtaggio(int index,Pianta p){
         this.orto.aggiungiPianta(index, p);
-    }
-
-    /**
-    * Aggiorna il model Scompartimento rimuovendo le piante che sono pronte al raccolto
-    */
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        scompartimento.prontoAlRaccolto();
     }
 
     /**

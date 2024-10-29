@@ -80,7 +80,7 @@ public class Scompartimento {
                 this.piante.remove(pianta);
                 //Aggiorno la GUI
                 this.controllerScomp.raccogliPianta(pianta);
-                System.out.println(pianta.getNome()+" è stata raccolta!");
+                System.out.println("["+this.toString()+"]"+pianta.getNome()+" è stata raccolta!");
             }
         }
     }
@@ -91,7 +91,7 @@ public class Scompartimento {
      */
     public void resetUmidità(){
         this.sensore.aggiornaValUmidita();
-        System.out.println(this.toString()+" aggiorna umidità!");
+        //System.out.println(this.toString()+" aggiorna umidità!");
     }
 
     @Override

@@ -11,10 +11,8 @@ public class PanelScompartimento extends JPanel{
     
     /**
      * Costruttore del panel dello scompartimento. Instanzia 4 istanze della classe PanelPianta in cui verranno aggiunte le piante
-     * 
-     * @param index -> Indice dello scompartimento a cui è associato il panel
      */
-    public PanelScompartimento(int index, ControllerScompartimento controller) {
+    public PanelScompartimento(ControllerScompartimento controller) {
         this.controllerScompartimento = controller;
         this.setBackground(Color.WHITE);
         this.setPreferredSize(new Dimension(300, 300));

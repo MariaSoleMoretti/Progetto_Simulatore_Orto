@@ -10,7 +10,7 @@ import java.awt.event.*;
 public class ControllerOrto implements ActionListener{
     OrtoSmart orto = OrtoSmart.getInstance();
     private static ControllerOrto instance;
-    private List<FinestraScompartimento> finestreScomp;    //La mappa che contiene la corrispondenza scompartimento col il rispettivo sensore
+    private List<FinestraScompartimento> finestreScomp;   
     private int numFinestre = 0;
 
     public ControllerOrto(){

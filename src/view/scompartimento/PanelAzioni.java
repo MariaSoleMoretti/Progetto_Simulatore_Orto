@@ -2,16 +2,15 @@ package view.scompartimento;
 
 import javax.swing.JPanel;
 
-import controller.*;
+import model.Scompartimento;
 
 
 public class PanelAzioni extends JPanel{
-    final ControllerIrrigazione controllerIrr = ControllerIrrigazione.getInstance();
 
-    public PanelAzioni(int index, ControllerScompartimento controller){
+    public PanelAzioni(Scompartimento scompartimento){
         // Aggiungo un pulsante al pannello
-        this.add(new PulsanteInnaffia(controllerIrr));
+        this.add(new PulsanteInnaffia(scompartimento));
         // Aggiungo un pulsante al pannello
-        this.add(new PulsanteRaccogli(controller));
+        this.add(new PulsanteRaccogli(scompartimento));
     }
 }
