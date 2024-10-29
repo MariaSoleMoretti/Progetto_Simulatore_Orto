@@ -9,7 +9,6 @@ public abstract class Pianta {
 
     // Campi della classe
     private String nome;
-    private String[] stagioni;
     private double umiditàMin;
     private double getValUmidità;
     private StatoCrescita statoCorrenteCrescita;
@@ -18,10 +17,9 @@ public abstract class Pianta {
     private ControllerPianta controller = null;
 
     // Costruttore della classe
-    public Pianta(Scompartimento sc, String nome, String[] stagioni, double min, long delay, long period){
+    public Pianta(Scompartimento sc, String nome, double min, long delay, long period){
         this.scompartimento = sc;
         this.nome = nome;
-        this.stagioni = stagioni.clone();
         this.umiditàMin = min;
         this.getValUmidità = this.scompartimento.getValUmidità();
         this.statoCorrenteCrescita = StatoCrescita.GERMINAZIONE;
@@ -42,10 +40,6 @@ public abstract class Pianta {
     // Metodi getter della classe
     public String getNome(){
         return this.nome;
-    }
-
-    public String[] getStagioni(){
-        return this.stagioni.clone();
     }
 
     public double getUmiditàMin(){

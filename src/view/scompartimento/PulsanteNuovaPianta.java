@@ -6,7 +6,9 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import controller.*;
+import model.piante.Carota;
 import model.piante.Cipolla;
+import model.piante.Insalata;
 import model.piante.Pianta;
 import model.piante.Pomodoro;
 
@@ -45,6 +47,12 @@ public class PulsanteNuovaPianta extends JButton{
                     break;
                 case "Cipolla":
                     pianta = new Cipolla(controlleScomp.getScompartimento());
+                    break;
+                case "Insalata":
+                    pianta = new Insalata(controlleScomp.getScompartimento());
+                    break;
+                case "Carota":
+                    pianta = new Carota(controlleScomp.getScompartimento());
                 default:
                     break;
             }
