@@ -83,7 +83,7 @@ public class Scompartimento {
                 orto.setNumVerdure(pianta);
                 //Aggiorno la GUI
                 this.controllerScomp.raccogliPianta(pianta);
-                System.out.println("["+this.toString()+"]: Raccolti 4 "+pianta.getNome()+"!");
+                //System.out.println("["+this.toString()+"]: Raccolti 4 "+pianta.getNome()+"!");
             }
         }
     }
@@ -94,7 +94,6 @@ public class Scompartimento {
      */
     public void resetUmidità(){
         this.sensore.aggiornaValUmidita();
-        //System.out.println(this.toString()+" aggiorna umidità!");
     }
 
     @Override

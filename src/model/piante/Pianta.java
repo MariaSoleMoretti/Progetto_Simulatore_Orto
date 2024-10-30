@@ -5,7 +5,7 @@ import java.util.*;
 import controller.ControllerPianta;
 import model.Scompartimento;
 
-public abstract class Pianta {
+public class Pianta {
 
     // Campi della classe
     private String nome;

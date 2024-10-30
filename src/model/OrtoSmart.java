@@ -93,5 +93,16 @@ public class OrtoSmart {
                 numCarote+=4;
                 break;
         }
+
+        System.out.println(this.toString());
+    }
+
+    @Override
+    public String toString(){
+        return "{ Totale raccolto \n"+
+                "Pomodori: "+ numPomodori + "\n"+
+                "Cipolle: "+ numCipolle + "\n"+
+                "Insalate: "+ numInsalate + "\n"+
+                "Carote: "+ numCarote + " }\n\n";
     }
 }
