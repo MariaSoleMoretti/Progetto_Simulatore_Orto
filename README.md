@@ -1,5 +1,5 @@
 # Progetto_PMO
-Il progetto simula la gestione di un orto privato. Si potra coltivare, monitorare e raccogliere piante, il tutto gestito tramite interfaccia grafica.
+Il progetto simula la gestione di un orto privato. Si potrà coltivare, monitorare e raccogliere piante, il tutto gestito tramite interfaccia grafica.
 
 ## Design del progetto
 ### Scompartimento
@@ -16,3 +16,7 @@ Il progetto simula la gestione di un orto privato. Si potra coltivare, monitorar
 - Il ciclo di vita delle piante progredisce alternandosi nei seguenti stati
   - Germinazione >> Fioritura >> Maturazione >> Senescenza
 - Le piante potranno essere raccolte solo se nello stato di Senescenza, ed avranno un rendimento di 4 ortaggi.
+
+All'avvio del programma verranno mostrati i due seguenti frame:
+
+![Group 1](https://github.com/user-attachments/assets/4411e428-1498-44d7-9bd7-ab7ddfe86288)
