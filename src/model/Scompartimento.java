@@ -12,6 +12,7 @@ public class Scompartimento {
     private SensoreUmidità sensore;
     private double valUmidità;
     final ControllerScompartimento controllerScomp;
+    final OrtoSmart orto = OrtoSmart.getInstance();
 
     public Scompartimento(int id, double max, ControllerScompartimento contr){
         this.ID = id;
@@ -78,9 +79,11 @@ public class Scompartimento {
             if(result){
                 //Rimuovo la pianta dalla lista
                 this.piante.remove(pianta);
+                //Aumento totalizzatore verdure in orto
+                orto.setNumVerdure(pianta);
                 //Aggiorno la GUI
                 this.controllerScomp.raccogliPianta(pianta);
-                System.out.println("["+this.toString()+"]"+pianta.getNome()+" è stata raccolta!");
+                //System.out.println("["+this.toString()+"]"+pianta.getNome()+" è stata raccolta!");
             }
         }
     }

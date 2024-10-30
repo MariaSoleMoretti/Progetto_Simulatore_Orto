@@ -2,12 +2,10 @@ package controller;
 
 import java.awt.Color;
 
-import model.OrtoSmart;
 import model.piante.Pianta;
 import view.scompartimento.PanelPianta;
 
 public class ControllerPianta {
-    final OrtoSmart orto = OrtoSmart.getInstance();     //Istanza singleton della classe OrtoSmart
     private PanelPianta listenerPanel;                  //Lista di PanelPianta per poter aggiornare la view quando si aggiorna il model
 
     public ControllerPianta(PanelPianta p){

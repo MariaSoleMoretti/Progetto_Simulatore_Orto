@@ -9,6 +9,10 @@ public class OrtoSmart {
     private static OrtoSmart instance;
     private List<Scompartimento> orto;    //La mappa che contiene la corrispondenza scompartimento col il rispettivo sensore
     private int numScompartimenti;
+    private static int numPomodori;
+    private static int numCipolle;
+    private static int numInsalate;
+    private static int numCarote;
 
     public OrtoSmart(){
         this.orto = new LinkedList<>();
@@ -72,5 +76,22 @@ public class OrtoSmart {
             if(sc != null) sc.aggiungiPianta(p);
         }
 
+    }
+
+    public void setNumVerdure(Pianta pianta) {
+        switch(pianta.getNome()){
+            case "Pomodoro":
+                numPomodori+=4;
+                break;
+            case "Cipolla":
+                numCipolle+=4;
+                break;
+            case "Insalata":
+                numInsalate+=4;
+                break;
+            case "Carota":
+                numCarote+=4;
+                break;
+        }
     }
 }

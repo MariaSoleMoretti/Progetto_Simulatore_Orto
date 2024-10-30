@@ -2,7 +2,6 @@ package view.scompartimento;
 
 import java.awt.*;
 import java.util.EventListener;
-
 import javax.swing.*;
 
 import model.piante.Pianta;

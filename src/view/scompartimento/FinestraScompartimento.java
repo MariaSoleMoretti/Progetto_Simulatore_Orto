@@ -12,7 +12,7 @@ public class FinestraScompartimento extends JFrame {
         INDEX = index;
         // Creo il frame e imposto titolo e altre proprieta'
         this.setTitle("Scompartimento_"+index);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
         ControllerScompartimento controller = new ControllerScompartimento();
 
