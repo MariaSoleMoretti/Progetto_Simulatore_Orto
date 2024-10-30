@@ -18,7 +18,6 @@ public class PulsanteInnaffia extends JButton{
     public class ActionInnaffia implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println(scompartimento.toString()+" aggiorna umidità");
             scompartimento.resetUmidità();
         }  
     }

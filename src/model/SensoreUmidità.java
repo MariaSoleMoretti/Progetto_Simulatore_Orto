@@ -50,6 +50,7 @@ public class SensoreUmidità {
             this.timer = new Timer();
             timer.schedule(new RiduzioneUmidità(), 3000, 5000);
         }
+        System.out.println("["+scompartimento.toString()+"]"+" aggiorna umidità");
         notificaPiante(VAL_MAX);
     }
 

@@ -37,7 +37,7 @@ public class Scompartimento {
             } catch (Exception e){
                 System.out.println(e);
             }
-            System.out.println("["+this.toString()+"]: Aggiungo 4 "+p.getNome());
+            System.out.println("["+this.toString()+"]: Aggiungo "+p.getNome());
         } else {
             System.out.println("Lo scompartimento è pieno.");
         }
@@ -83,7 +83,7 @@ public class Scompartimento {
                 orto.setNumVerdure(pianta);
                 //Aggiorno la GUI
                 this.controllerScomp.raccogliPianta(pianta);
-                //System.out.println("["+this.toString()+"]"+pianta.getNome()+" è stata raccolta!");
+                System.out.println("["+this.toString()+"]: Raccolti 4 "+pianta.getNome()+"!");
             }
         }
     }
